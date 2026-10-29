@@ -22,10 +22,9 @@ describe('AppRoutes', () => {
   it('keeps the email action one click away in the nav', () => {
     renderAt('/');
     const nav = screen.getByRole('navigation', { name: 'Main' });
-    const email = within(nav).getByRole('link', { name: 'Email me' });
-    expect(email.getAttribute('href')).toBe(
-      'mailto:fernando.ordiales23@gmail.com'
-    );
+    expect(
+      within(nav).getByRole('button', { name: 'Email me' })
+    ).not.toBeNull();
   });
 
   it('lands on the work section when returning from a case study', async () => {

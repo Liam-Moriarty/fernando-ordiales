@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
-import { profile } from '../content/profile';
-import { ButtonLink } from './Button';
+import { EmailButton } from './EmailButton';
 import { ThemeToggle } from './ThemeToggle';
 
 const navLink =
@@ -39,13 +38,7 @@ export const Nav = () => {
           </NavLink>
         </div>
         <ThemeToggle />
-        <ButtonLink
-          variant="primary"
-          size="sm"
-          href={`mailto:${profile.email}`}
-        >
-          Email me
-        </ButtonLink>
+        <EmailButton size="sm" />
       </nav>
     </header>
   );

@@ -354,6 +354,15 @@ All states = default / hover / active / focus-visible / disabled.
   border-only chip, muted; never colored per-technology.
 - **Copy-email button:** ghost with copy icon; after copy shows "Copied" +
   check, reverts after 1.6s; also fires a polite `aria-live` announcement.
+- **Email modal (added 2026-10-29 at Fernando's request):** every "Email me"
+  button opens a native `<dialog>` (elevated bg, 12px radius, §8 shadow,
+  dimmed backdrop) with Subject and Message fields plus Cancel/Send. Send
+  hands the drafted message to the visitor's mail app via a prefilled
+  `mailto:` — a static site cannot post mail itself; a form service or
+  server is the later-stage upgrade. Escape and backdrop click close it.
+- **Case-study links rail (per the old portfolio):** the aside lists Live
+  URL and Repository rows; a missing link renders a muted honest placeholder
+  ("Not deployed yet" / "Not public yet"), never a dead link.
 - **Swipe deck (case-study galleries, added 2026-10-29 at Fernando's
   request):** a Tinder-style card stack — drag or flick the top screenshot
   past a distance/velocity threshold and it flies off with a slight rotation

@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { profile } from '../content/profile';
 import { ButtonLink } from '../components/Button';
+import { EmailButton } from '../components/EmailButton';
 import { easeSettle } from '../lib/motion';
 import { loadParticleField } from '../three/loadParticleField';
 import { StaticField } from '../three/StaticField';
@@ -62,9 +63,7 @@ export const Hero = () => {
           {profile.support}
         </motion.p>
         <motion.div {...at(0.24, 0.4)} className="mt-9 flex flex-wrap gap-3">
-          <ButtonLink variant="primary" href={`mailto:${profile.email}`}>
-            Email me
-          </ButtonLink>
+          <EmailButton />
           <ButtonLink
             variant="secondary"
             href={profile.links.resume}

@@ -47,13 +47,23 @@ console errors). Bundle sizes are logged in
   internships list under Experience (Digiplus internship, both Hytel
   bootcamps; the resume gives them no dates, so none are shown). Initial JS
   rose to 163.9 KB gz — still under the 180 KB budget.
+- "Email me" opens a compose dialog (Subject/Message, Cancel/Send); Send
+  prefills the visitor's mail app via mailto. True in-page sending needs a
+  form service or server — named, not built (Prototype).
+- Case studies carry the old portfolio's links rail: Live URL / Repository
+  rows with honest muted placeholders when nothing is public. Repo links
+  added from Fernando's GitHub: fgp-official-website (FGP),
+  budget-trackerv2 (budget tracker), Todo-List (task monitoring — the MERN +
+  RTK Query description matches; **Fernando: confirm this is the right
+  repo**). Sales dashboard has no identifiable public repo yet.
 - Resume downloads point at `/docs/Ordiales-Fernando-Resume.pdf` (the real
   PDF); the placeholder was removed. GitHub URL is set in `profile.ts`.
 
 ## Still open (needs Fernando)
 
-- [ ] Live/repo links for the three MERN projects and metrics where
-      claimable (`links` in `projects.ts`).
+- [ ] Confirm the Todo-List repo really is the task-monitoring project; add
+      a repo for the sales dashboard and live URLs once deployed (`links` in
+      `projects.ts`).
 - [ ] Confirm employer/client approval for Switchboard and Flinki imagery
       before publishing.
 - [ ] Production domain: replace `REPLACE-WITH-DOMAIN` in

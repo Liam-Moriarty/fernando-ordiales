@@ -231,7 +231,7 @@ export const projects: Project[] = [
       'The site runs fully off WordPress',
       'Deploys went from manual uploads to a push-triggered pipeline',
     ],
-    links: {},
+    links: { repo: 'https://github.com/Liam-Moriarty/fgp-official-website' },
     images: [
       {
         src: '/projects/fgp-migration/1.jpg',
@@ -330,7 +330,7 @@ export const projects: Project[] = [
       },
     ],
     results: ['The complete CRUD flow works end to end against MongoDB'],
-    links: {},
+    links: { repo: 'https://github.com/Liam-Moriarty/Todo-List' },
     images: [
       {
         src: '/projects/personal-task-monitoring/1.png',
@@ -372,7 +372,7 @@ export const projects: Project[] = [
       },
     ],
     results: ['Income, expenses and balance analytics working end to end'],
-    links: {},
+    links: { repo: 'https://github.com/Liam-Moriarty/budget-trackerv2' },
     images: [
       {
         src: '/projects/budget-tracker/1.png',

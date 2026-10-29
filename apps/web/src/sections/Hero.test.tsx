@@ -9,9 +9,7 @@ describe('Hero', () => {
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
       'I take AI products from prompt to production.'
     );
-    expect(
-      screen.getByRole('link', { name: 'Email me' }).getAttribute('href')
-    ).toBe('mailto:fernando.ordiales23@gmail.com');
+    expect(screen.getByRole('button', { name: 'Email me' })).not.toBeNull();
     const resume = screen.getByRole('link', { name: 'View resume (PDF)' });
     expect(resume.getAttribute('href')).toBe(
       '/docs/Ordiales-Fernando-Resume.pdf'

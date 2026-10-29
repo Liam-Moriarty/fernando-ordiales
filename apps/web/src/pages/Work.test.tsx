@@ -50,6 +50,22 @@ describe('Work', () => {
     expect(screen.getByRole('button', { name: 'Next image' })).not.toBeNull();
   });
 
+  it('shows honest placeholders when a project has no public links', () => {
+    // Like the old portfolio's meta rail: muted rows, never dead links.
+    renderSlug('sales-dashboard');
+    expect(screen.getByText('Not deployed yet')).not.toBeNull();
+    expect(screen.getByText('Not public yet')).not.toBeNull();
+  });
+
+  it('links the repository row for projects with a public repo', () => {
+    renderSlug('budget-tracker');
+    expect(
+      screen
+        .getByRole('link', { name: /budget-trackerv2/ })
+        .getAttribute('href')
+    ).toBe('https://github.com/Liam-Moriarty/budget-trackerv2');
+  });
+
   it('cycles the next-project link from the last back to the first', () => {
     renderSlug(projects[projects.length - 1].slug);
     const next = screen.getByRole('link', {

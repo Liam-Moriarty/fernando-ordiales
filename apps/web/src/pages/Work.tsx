@@ -117,6 +117,50 @@ export const Work = () => {
             <div className="mt-4">
               <ArchDiagram project={project} />
             </div>
+            {/* Like the old portfolio's meta rail: honest muted rows instead
+                of dead links when a project has nothing public. */}
+            <h2 className="mt-10 font-mono text-caption text-muted">links</h2>
+            <dl className="mt-3 max-w-70">
+              <div className="border-t border-border py-3">
+                <dt className="font-mono text-caption text-muted">Live URL</dt>
+                <dd className="mt-1 break-all text-sm">
+                  {project.links.live ? (
+                    <a
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-accent underline decoration-accent-quiet underline-offset-4 hover:decoration-accent"
+                    >
+                      {project.links.live.replace(/^https?:\/\//, '')}
+                    </a>
+                  ) : (
+                    <span className="text-muted">Not deployed yet</span>
+                  )}
+                </dd>
+              </div>
+              <div className="border-y border-border py-3">
+                <dt className="font-mono text-caption text-muted">
+                  Repository
+                </dt>
+                <dd className="mt-1 break-all text-sm">
+                  {project.links.repo ? (
+                    <a
+                      href={project.links.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-accent underline decoration-accent-quiet underline-offset-4 hover:decoration-accent"
+                    >
+                      {project.links.repo.replace(
+                        /^https?:\/\/(www\.)?github\.com\//,
+                        ''
+                      )}
+                    </a>
+                  ) : (
+                    <span className="text-muted">Not public yet</span>
+                  )}
+                </dd>
+              </div>
+            </dl>
           </aside>
         </div>
 

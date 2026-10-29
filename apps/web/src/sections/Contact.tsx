@@ -1,5 +1,5 @@
-import { ButtonLink } from '../components/Button';
 import { CopyEmailButton } from '../components/CopyEmailButton';
+import { EmailButton } from '../components/EmailButton';
 import { profile } from '../content/profile';
 
 export const Contact = () => (
@@ -19,9 +19,7 @@ export const Contact = () => (
       {profile.email}
     </a>
     <div className="mt-10 flex flex-wrap gap-3">
-      <ButtonLink variant="primary" href={`mailto:${profile.email}`}>
-        Email me
-      </ButtonLink>
+      <EmailButton />
       <CopyEmailButton email={profile.email} />
     </div>
     <p className="mt-8 font-mono text-caption text-muted">

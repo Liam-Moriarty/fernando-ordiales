@@ -15,6 +15,7 @@
   --theme-accent-hover: color-mix(in oklab, #6650a8 88%, #1c1c21);
   --theme-accent-quiet: #ece8f7;
   --theme-error: #c62a2f;
+  --theme-shadow-strong: rgb(28 28 33 / 0.12);
 }
 
 [data-theme='dark'] {
@@ -29,6 +30,7 @@
   --theme-accent-hover: color-mix(in oklab, #b4a5e8 88%, #e9e9ee);
   --theme-accent-quiet: #2e2a42;
   --theme-error: #e5484d;
+  --theme-shadow-strong: rgb(0 0 0 / 0.5);
 }
 
 @theme inline {
@@ -103,6 +105,11 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+  }
+
+  /* Floating-surface shadow per design.md §8. */
+  .modal {
+    box-shadow: 0 16px 48px var(--theme-shadow-strong);
   }
 
   :not(pre) > code {

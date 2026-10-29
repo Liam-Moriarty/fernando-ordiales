@@ -20,10 +20,16 @@ What happens when someone clicks. Wireframes live in `design.md` §6.
 
 - **Who:** Visitor
 - **Starts at:** anywhere — the nav's "Email me" is on every screen
-- **Steps:** click any "Email me" (nav, hero, contact) → mail client opens
-  with `mailto:`; or click "Copy email" → button confirms "Copied" for 1.6s.
+- **Steps:** click any "Email me" (nav, hero, contact) → a compose dialog
+  opens with Subject and Message; Send opens the visitor's mail client with
+  everything prefilled for Fernando's address (Cancel, Escape or the
+  backdrop closes it). The contact section's big address stays a plain
+  mailto, and "Copy email" confirms "Copied" for 1.6s.
 - **On failure:** clipboard unavailable or denied → the button stays "Copy
   email", nothing breaks; the address is visible as text and mailto works.
+  No mail client configured → the visible address and Copy email remain the
+  fallback. (True in-page sending would need a form service or server —
+  later stage.)
 
 ### Flow 2 · Read a case study
 
