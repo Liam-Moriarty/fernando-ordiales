@@ -1,33 +1,7 @@
-import { useCallback, useState } from 'react';
-import { PlanSheet } from './landing/PlanSheet';
-import {
-  ClaudeSheet,
-  EnvSheet,
-  RunSheet,
-  SetupSheet,
-  SharedUiSheet,
-  SupabaseSheet,
-  WorkflowSheet,
-} from './landing/TopicSheets';
-import { Welcome } from './landing/Welcome';
-
-export const App = () => {
-  const [welcomed, setWelcomed] = useState(false);
-  const finishWelcome = useCallback(() => setWelcomed(true), []);
-
-  return (
-    <>
-      {!welcomed && <Welcome onDone={finishWelcome} />}
-      <main className="mx-auto max-w-6xl space-y-12 px-4 py-8 sm:space-y-16 sm:px-6 sm:py-14">
-        <PlanSheet drawn={welcomed} />
-        <SetupSheet />
-        <RunSheet />
-        <WorkflowSheet />
-        <SharedUiSheet />
-        <EnvSheet />
-        <SupabaseSheet />
-        <ClaudeSheet />
-      </main>
-    </>
-  );
-};
+export const App = () => (
+  <main className="mx-auto max-w-page px-5 py-24 sm:px-8 lg:px-12">
+    <h1 className="max-w-[18ch] text-display">
+      I take AI products from prompt to production.
+    </h1>
+  </main>
+);
