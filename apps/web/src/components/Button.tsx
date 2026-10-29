@@ -4,7 +4,7 @@ type Variant = 'primary' | 'secondary' | 'ghost';
 type Size = 'md' | 'sm';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-sm font-medium transition-colors duration-150';
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm font-medium transition-colors duration-150';
 
 const variants: Record<Variant, string> = {
   primary: 'bg-accent text-background hover:bg-accent-hover',
