@@ -12,6 +12,7 @@
   --theme-muted: #595964;
   --theme-border: #e4e4eb;
   --theme-accent: #6650a8;
+  --theme-accent-hover: color-mix(in oklab, #6650a8 88%, #1c1c21);
   --theme-accent-quiet: #ece8f7;
   --theme-error: #c62a2f;
 }
@@ -25,6 +26,7 @@
   --theme-muted: #a3a3af;
   --theme-border: #2e2e36;
   --theme-accent: #b4a5e8;
+  --theme-accent-hover: color-mix(in oklab, #b4a5e8 88%, #e9e9ee);
   --theme-accent-quiet: #2e2a42;
   --theme-error: #e5484d;
 }
@@ -40,6 +42,7 @@
   --color-muted: var(--theme-muted);
   --color-border: var(--theme-border);
   --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
   --color-accent-quiet: var(--theme-accent-quiet);
   --color-error: var(--theme-error);
 

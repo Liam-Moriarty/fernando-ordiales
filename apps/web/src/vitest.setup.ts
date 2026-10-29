@@ -33,3 +33,6 @@ class ObserverStub {
 vi.stubGlobal('IntersectionObserver', ObserverStub);
 vi.stubGlobal('ResizeObserver', ObserverStub);
 Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {};
+}
