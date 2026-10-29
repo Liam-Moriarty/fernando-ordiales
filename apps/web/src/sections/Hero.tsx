@@ -1,7 +1,29 @@
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { profile } from '../content/profile';
 import { ButtonLink } from '../components/Button';
 import { easeSettle } from '../lib/motion';
+import { StaticField } from '../three/StaticField';
+import { useSceneGate } from '../three/useSceneGate';
+
+const ParticleField = lazy(() => import('../three/ParticleField'));
+
+// Mount the heavy scene only on idle, after the page is interactive.
+const useIdleReady = (wanted: boolean): boolean => {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (!wanted) return;
+    if (typeof window.requestIdleCallback === 'function') {
+      const handle = window.requestIdleCallback(() => setReady(true));
+      return () => window.cancelIdleCallback(handle);
+    }
+    const handle = window.setTimeout(() => setReady(true), 200);
+    return () => window.clearTimeout(handle);
+  }, [wanted]);
+
+  return ready;
+};
 
 // Page-load sequence per design.md §9: headline, support line, CTAs, each a
 // gentle settle; the Three.js field (Task 5) joins late in the right-hand box.
@@ -13,6 +35,8 @@ const enter = (delay: number, duration: number) => ({
 
 export const Hero = () => {
   const reduced = useReducedMotion();
+  const mode = useSceneGate();
+  const sceneReady = useIdleReady(mode === 'webgl');
   const at = (delay: number, duration: number) =>
     reduced ? enter(0, 0.2) : enter(delay, duration);
 
@@ -37,9 +61,25 @@ export const Hero = () => {
           </ButtonLink>
         </motion.div>
       </div>
-      {/* The scene box is reserved so nothing shifts when the lazy canvas
-          arrives (Task 5 fills it). */}
-      <div aria-hidden className="hidden h-105 lg:block" data-scene-box />
+      {/* The box is reserved up front so nothing shifts when the lazy canvas
+          arrives; the static SVG is the first and fallback frame. */}
+      <div aria-hidden className="relative mt-4 h-56 sm:h-72 lg:mt-0 lg:h-105">
+        <div className="absolute inset-0">
+          <StaticField />
+        </div>
+        {sceneReady && (
+          <Suspense fallback={null}>
+            <motion.div
+              className="absolute inset-0 bg-background"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <ParticleField count={window.innerWidth < 768 ? 700 : 1800} />
+            </motion.div>
+          </Suspense>
+        )}
+      </div>
     </section>
   );
 };

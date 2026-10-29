@@ -15,10 +15,12 @@
     "@fontsource-variable/instrument-sans": "^5.3.0",
     "@fontsource-variable/spline-sans-mono": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
+    "@react-three/fiber": "^9.8.2",
     "framer-motion": "^14.7.1",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "^8.5.1"
+    "react-router": "^8.5.1",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -30,6 +32,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "^6.1.2",
     "eslint": "catalog:",
     "jsdom": "catalog:",

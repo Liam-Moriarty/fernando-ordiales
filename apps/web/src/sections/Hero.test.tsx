@@ -18,4 +18,12 @@ describe('Hero', () => {
         .getAttribute('href')
     ).toBe('/resume.pdf');
   });
+
+  it('falls back to the static field when the scene is gated off', () => {
+    // jsdom has no WebGL and the test setup forces reduced motion, so the
+    // gate must choose the static SVG and never mount a canvas.
+    const { container } = render(<Hero />);
+    expect(container.querySelector('[data-static-field]')).not.toBeNull();
+    expect(container.querySelector('canvas')).toBeNull();
+  });
 });
