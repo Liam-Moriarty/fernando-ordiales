@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
+import { profile } from '../content/profile';
 import { ThemeToggle } from './ThemeToggle';
 
 const navLink =
@@ -26,7 +27,9 @@ export const Nav = () => {
         className="mx-auto flex max-w-page items-center gap-5 px-5 py-3 sm:px-8 lg:px-12"
       >
         <Link to="/" className="mr-1 text-sm font-medium">
-          Fernando Ordiales
+          {/* Initials on phones so the wordmark never wraps. */}
+          <span className="sm:hidden">{profile.initials}</span>
+          <span className="hidden sm:inline">{profile.shortName}</span>
         </Link>
         <div className="flex flex-1 items-center gap-5">
           <Link to="/#work" className={navLink}>

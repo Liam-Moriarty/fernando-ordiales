@@ -1,6 +1,7 @@
 export const profile = {
   name: 'Fernando Jose Ordiales',
   shortName: 'Fernando Ordiales',
+  initials: 'F.J',
   role: 'AI Engineer',
   headline: 'I take AI products from idea to production',
   support:
