@@ -62,7 +62,11 @@ console errors). Bundle sizes are logged in
   regenerated to match the headline.
 - Fernando's studio portrait (`public/pfp.jpg`, served resized as
   `public/portrait.jpg`): round avatar above the hero headline, full
-  portrait beside the About bio. `pfp-2.jpg` stays unused in `public/`.
+  portrait beside the About bio.
+- A Spotify-style now-playing card floats over the hero field with
+  `pfp-2.jpg` as cover art (served square as `public/cover.jpg`), track
+  "Idea to Production", a 2021→now progress bar, and a play toggle that
+  animates EQ bars. Modeled on the reference site's hero identity card.
 - "Visit live site" / "Source code" buttons open in a new tab; About's
   "Email me" now opens the compose modal like everywhere else.
 - The theme toggle crossfades through the View Transitions API (CSS

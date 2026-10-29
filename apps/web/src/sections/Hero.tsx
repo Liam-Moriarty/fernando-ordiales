@@ -4,6 +4,7 @@ import { profile } from '../content/profile';
 import { ButtonLink } from '../components/Button';
 import { EmailButton } from '../components/EmailButton';
 import { easeSettle } from '../lib/motion';
+import { NowPlayingCard } from '../components/NowPlayingCard';
 import { loadParticleField } from '../three/loadParticleField';
 import { StaticField } from '../three/StaticField';
 import { useSceneGate } from '../three/useSceneGate';
@@ -86,14 +87,17 @@ export const Hero = () => {
         </motion.div>
       </div>
       {/* The box is reserved up front so nothing shifts when the lazy canvas
-          arrives; the static SVG is the first and fallback frame. */}
-      <div aria-hidden className="relative mt-4 h-56 sm:h-72 lg:mt-0 lg:h-105">
-        <div className="absolute inset-0">
+          arrives; the static SVG is the first and fallback frame. The
+          now-playing card floats over the field (interactive, so it lives
+          outside the aria-hidden layers). */}
+      <div className="relative mt-4 h-72 lg:mt-0 lg:h-105">
+        <div aria-hidden className="absolute inset-0">
           <StaticField />
         </div>
         {sceneReady && (
           <Suspense fallback={null}>
             <motion.div
+              aria-hidden
               className="absolute inset-0 bg-background"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -103,6 +107,9 @@ export const Hero = () => {
             </motion.div>
           </Suspense>
         )}
+        <motion.div {...at(0.36, 0.4)} className="absolute inset-x-0 bottom-0">
+          <NowPlayingCard />
+        </motion.div>
       </div>
     </section>
   );

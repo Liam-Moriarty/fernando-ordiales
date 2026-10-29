@@ -370,6 +370,13 @@ All states = default / hover / active / focus-visible / disabled.
 - **Case-study links rail (per the old portfolio):** the aside lists Live
   URL and Repository rows; a missing link renders a muted honest placeholder
   ("Not deployed yet" / "Not public yet"), never a dead link.
+- **Now-playing card (added 2026-10-29 at Fernando's request, after a
+  reference site's hero identity card):** a Spotify-style card floating at
+  the bottom of the hero's particle-field box — pfp-2 as cover art, track
+  "Idea to Production", artist Fernando Ordiales, a progress bar running
+  2021 → now, and a play button whose only job is animating three EQ bars
+  (decoration that admits it; skip glyphs are non-interactive). Elevated bg,
+  hairline border, 8px radius; fades in at the end of the load sequence.
 - **Swipe deck (case-study galleries, added 2026-10-29 at Fernando's
   request):** a Tinder-style card stack — drag or flick the top screenshot
   past a distance/velocity threshold and it flies off with a slight rotation
