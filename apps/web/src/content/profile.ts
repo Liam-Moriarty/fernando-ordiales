@@ -3,7 +3,8 @@ export const profile = {
   shortName: 'Fernando Ordiales',
   role: 'AI Engineer',
   headline: 'I take AI products from idea to production',
-  support: 'AI Software Engineer. I build AI-powered products on Google Cloud.',
+  support:
+    'I focus on creating user-friendly and visually appealing interfaces by balancing aesthetics and functionality. My design process involves understanding user needs and using modern tools to deliver intuitive, responsive solutions.',
   email: 'fernando.ordiales23@gmail.com',
   location: 'Manila, PH',
   timezone: 'GMT+8',
