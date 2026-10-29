@@ -12,10 +12,10 @@ describe('Hero', () => {
     );
     // The support copy is Fernando's to edit; assert it renders, not its text.
     expect(screen.getByText(profile.support)).not.toBeNull();
-    expect(screen.getByAltText('Fernando Ordiales').getAttribute('src')).toBe(
-      '/portrait.jpg'
-    );
-    expect(screen.getByRole('button', { name: 'Email me' })).not.toBeNull();
+    // Two legitimate "Email me" buttons: the hero CTA and the card's.
+    expect(
+      screen.getAllByRole('button', { name: 'Email me' }).length
+    ).toBeGreaterThanOrEqual(1);
     const resume = screen.getByRole('link', { name: 'View resume (PDF)' });
     expect(resume.getAttribute('href')).toBe(
       '/docs/Ordiales-Fernando-Resume.pdf'
@@ -32,11 +32,9 @@ describe('Hero', () => {
     expect(h1.style.transform).not.toMatch(/translate/);
   });
 
-  it('falls back to the static field when the scene is gated off', () => {
-    // jsdom has no WebGL and the test setup forces reduced motion, so the
-    // gate must choose the static SVG and never mount a canvas.
+  it('shows the identity card instead of the field', () => {
     const { container } = render(<Hero />);
-    expect(container.querySelector('[data-static-field]')).not.toBeNull();
-    expect(container.querySelector('canvas')).toBeNull();
+    expect(screen.getByText(profile.availability)).not.toBeNull();
+    expect(container.querySelector('[data-static-field]')).toBeNull();
   });
 });

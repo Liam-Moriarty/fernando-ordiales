@@ -107,6 +107,18 @@
     outline-offset: 2px;
   }
 
+  /* The identity card's photo: a lavender duotone wash so the night shot
+     sits in the site's palette (Fernando asked for a color treatment like
+     his reference card). */
+  .card-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-accent);
+    mix-blend-mode: color;
+    pointer-events: none;
+  }
+
   /* The now-playing card's three EQ bars, only while "playing". */
   @media (prefers-reduced-motion: no-preference) {
     .eq i {

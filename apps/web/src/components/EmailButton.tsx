@@ -25,7 +25,13 @@ type SendState = 'idle' | 'sending' | 'sent' | 'error';
 const field =
   'mt-1 w-full rounded-sm border border-border bg-surface px-3 py-2 text-sm text-text';
 
-export const EmailButton = ({ size = 'md' }: { size?: 'md' | 'sm' }) => {
+export const EmailButton = ({
+  size = 'md',
+  className,
+}: {
+  size?: 'md' | 'sm';
+  className?: string;
+}) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
@@ -76,7 +82,12 @@ export const EmailButton = ({ size = 'md' }: { size?: 'md' | 'sm' }) => {
 
   return (
     <>
-      <Button variant="primary" size={size} onClick={open}>
+      <Button
+        variant="primary"
+        size={size}
+        className={className}
+        onClick={open}
+      >
         Email me
       </Button>
       <dialog

@@ -63,10 +63,12 @@ console errors). Bundle sizes are logged in
 - Fernando's studio portrait (`public/pfp.jpg`, served resized as
   `public/portrait.jpg`): round avatar above the hero headline, full
   portrait beside the About bio.
-- A Spotify-style now-playing card floats over the hero field with
-  `pfp-2.jpg` as cover art (served square as `public/cover.jpg`), track
-  "Idea to Production", a 2021→now progress bar, and a play toggle that
-  animates EQ bars. Modeled on the reference site's hero identity card.
+- The hero's right column is an identity card modeled on Fernando's
+  reference: availability pill, large lavender-duotone photo (`pfp-2.jpg`),
+  Spotify strip (play/EQ bars, "Idea to Production", 2021→now), email,
+  location, social buttons, full-width Email me CTA. The round avatar above
+  the headline was removed at his request, and the particle field moved to
+  the right of the Contact section (`FieldScene`, same gating/fallbacks).
 - "Visit live site" / "Source code" buttons open in a new tab; About's
   "Email me" now opens the compose modal like everywhere else.
 - The theme toggle crossfades through the View Transitions API (CSS
