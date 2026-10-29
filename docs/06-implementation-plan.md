@@ -48,8 +48,11 @@ console errors). Bundle sizes are logged in
   bootcamps; the resume gives them no dates, so none are shown). Initial JS
   rose to 163.9 KB gz — still under the 180 KB budget.
 - "Email me" opens a compose dialog (Subject/Message, Cancel/Send); Send
-  prefills the visitor's mail app via mailto. True in-page sending needs a
-  form service or server — named, not built (Prototype).
+  relays through FormSubmit (formsubmit.co/ajax, no account or key — the
+  address is already public on the page) straight to Fernando's inbox, with
+  a prefilled mailto as the in-dialog fallback when the relay is
+  unreachable. Chosen over mailto alone after it dead-ended on machines
+  with no configured mail app.
 - Case studies carry the old portfolio's links rail: Live URL / Repository
   rows with honest muted placeholders when nothing is public. Repo links
   added from Fernando's GitHub: fgp-official-website (FGP),
@@ -61,6 +64,12 @@ console errors). Bundle sizes are logged in
 
 ## Still open (needs Fernando)
 
+- [ ] Send one test message from the site, then click the activation link
+      FormSubmit emails to fernando.ordiales23@gmail.com (one time; delivery
+      starts after it). FormSubmit was down (HTTP 521) during the build's
+      live check, so also verify a send goes through once it's back; if the
+      service proves flaky, a Web3Forms access key (web3forms.com, free) is
+      a one-line swap in `EmailButton.tsx`.
 - [ ] Confirm the Todo-List repo really is the task-monitoring project; add
       a repo for the sales dashboard and live URLs once deployed (`links` in
       `projects.ts`).

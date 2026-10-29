@@ -7,7 +7,8 @@ const base =
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm font-medium transition-colors duration-150';
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-accent text-background hover:bg-accent-hover',
+  primary:
+    'bg-accent text-background hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-surface disabled:text-muted',
   secondary: 'border border-border text-text hover:border-accent',
   ghost: 'text-muted hover:text-text',
 };

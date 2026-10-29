@@ -357,9 +357,11 @@ All states = default / hover / active / focus-visible / disabled.
 - **Email modal (added 2026-10-29 at Fernando's request):** every "Email me"
   button opens a native `<dialog>` (elevated bg, 12px radius, §8 shadow,
   dimmed backdrop) with Subject and Message fields plus Cancel/Send. Send
-  hands the drafted message to the visitor's mail app via a prefilled
-  `mailto:` — a static site cannot post mail itself; a form service or
-  server is the later-stage upgrade. Escape and backdrop click close it.
+  POSTs to FormSubmit (formsubmit.co/ajax), which relays to Fernando's inbox
+  — a mailto hand-off failed visitors with no configured mail app. Send is
+  disabled until there is a message; while the relay is unreachable the
+  modal offers a prefilled mailto link as the fallback. "Sent" confirms in
+  the dialog. Escape and backdrop click close it.
 - **Case-study links rail (per the old portfolio):** the aside lists Live
   URL and Repository rows; a missing link renders a muted honest placeholder
   ("Not deployed yet" / "Not public yet"), never a dead link.

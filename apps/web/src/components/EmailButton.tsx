@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { profile } from '../content/profile';
-import { Button, ButtonLink } from './Button';
+import { Button } from './Button';
 
 export const buildMailto = (
   email: string,
@@ -14,16 +14,22 @@ export const buildMailto = (
   return query ? `mailto:${email}?${query}` : `mailto:${email}`;
 };
 
+// FormSubmit relays the POST to Fernando's inbox with no account or key —
+// the address is public on this page anyway. The FIRST message ever sent
+// makes FormSubmit email Fernando an activation link; messages flow once he
+// confirms it. The mail-app mailto stays as the failure fallback.
+export const SEND_ENDPOINT = `https://formsubmit.co/ajax/${profile.email}`;
+
+type SendState = 'idle' | 'sending' | 'sent' | 'error';
+
 const field =
   'mt-1 w-full rounded-sm border border-border bg-surface px-3 py-2 text-sm text-text';
 
-// "Email me" opens a compose dialog; Send hands the drafted message to the
-// visitor's mail app via mailto. A static site can't post mail itself — a
-// form service or server would be the later-stage upgrade.
 export const EmailButton = ({ size = 'md' }: { size?: 'md' | 'sm' }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
+  const [state, setState] = useState<SendState>('idle');
 
   const open = () => {
     const dialog = dialogRef.current;
@@ -37,6 +43,33 @@ export const EmailButton = ({ size = 'md' }: { size?: 'md' | 'sm' }) => {
     if (!dialog) return;
     if (typeof dialog.close === 'function') dialog.close();
     else dialog.removeAttribute('open');
+    setState('idle');
+  };
+
+  const send = async () => {
+    setState('sending');
+    try {
+      const response = await fetch(SEND_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: subject || 'Portfolio contact',
+          message: body,
+          _captcha: 'false',
+          _template: 'box',
+        }),
+      });
+      if (!response.ok) throw new Error(`relay answered ${response.status}`);
+      setState('sent');
+      setSubject('');
+      setBody('');
+    } catch {
+      // Offline, blocked, or the relay is down: hand over to the mail app.
+      setState('error');
+    }
   };
 
   return (
@@ -56,40 +89,66 @@ export const EmailButton = ({ size = 'md' }: { size?: 'md' | 'sm' }) => {
         <h2 id="email-dialog-title" className="text-h4">
           Email Fernando
         </h2>
-        <p className="mt-1 text-sm text-muted">
-          Send opens your mail app with everything filled in, addressed to{' '}
-          {profile.email}.
-        </p>
-        <label className="mt-5 block text-sm">
-          Subject
-          <input
-            type="text"
-            value={subject}
-            onChange={(event) => setSubject(event.target.value)}
-            className={field}
-          />
-        </label>
-        <label className="mt-4 block text-sm">
-          Message
-          <textarea
-            rows={6}
-            value={body}
-            onChange={(event) => setBody(event.target.value)}
-            className={field}
-          />
-        </label>
-        <div className="mt-6 flex justify-end gap-3">
-          <Button variant="ghost" onClick={close}>
-            Cancel
-          </Button>
-          <ButtonLink
-            variant="primary"
-            href={buildMailto(profile.email, subject, body)}
-            onClick={close}
-          >
-            Send
-          </ButtonLink>
-        </div>
+        {state === 'sent' ? (
+          <>
+            <p className="mt-3 text-sm" role="status">
+              Sent — thank you. I read everything that lands here.
+            </p>
+            <div className="mt-6 flex justify-end">
+              <Button variant="secondary" onClick={close}>
+                Close
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="mt-1 text-sm text-muted">
+              Goes straight to {profile.email}.
+            </p>
+            <label className="mt-5 block text-sm">
+              Subject
+              <input
+                type="text"
+                value={subject}
+                onChange={(event) => setSubject(event.target.value)}
+                className={field}
+              />
+            </label>
+            <label className="mt-4 block text-sm">
+              Message
+              <textarea
+                rows={6}
+                value={body}
+                onChange={(event) => setBody(event.target.value)}
+                className={field}
+              />
+            </label>
+            {state === 'error' && (
+              <p className="mt-4 text-sm text-error" role="alert">
+                Couldn't send just now —{' '}
+                <a
+                  href={buildMailto(profile.email, subject, body)}
+                  className="text-accent underline decoration-accent-quiet underline-offset-4 hover:decoration-accent"
+                >
+                  open in your mail app
+                </a>{' '}
+                instead.
+              </p>
+            )}
+            <div className="mt-6 flex justify-end gap-3">
+              <Button variant="ghost" onClick={close}>
+                Cancel
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => void send()}
+                disabled={body.trim() === '' || state === 'sending'}
+              >
+                {state === 'sending' ? 'Sending…' : 'Send'}
+              </Button>
+            </div>
+          </>
+        )}
       </dialog>
     </>
   );
