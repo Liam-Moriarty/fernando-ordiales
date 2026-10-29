@@ -9,7 +9,7 @@ export const SelectedWork = () => (
   <section
     id="work"
     data-trace-node="selected work"
-    className="scroll-mt-24 py-16 lg:py-24"
+    className="scroll-mt-24 py-10 sm:py-16 lg:py-24"
   >
     <h2 className="text-h2">Selected work</h2>
     <ul className="mt-8 border-y border-border">

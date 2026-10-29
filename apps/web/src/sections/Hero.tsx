@@ -25,7 +25,7 @@ export const Hero = () => {
       : enter(delay, duration);
 
   return (
-    <section className="grid items-start gap-10 py-20 sm:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:py-32">
+    <section className="grid items-start gap-10 pt-14 pb-8 sm:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:py-32">
       <div>
         <motion.h1
           {...at(0, 0.5)}

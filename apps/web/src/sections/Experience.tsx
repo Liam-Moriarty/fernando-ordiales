@@ -4,7 +4,7 @@ export const Experience = () => (
   <section
     id="experience"
     data-trace-node="experience"
-    className="scroll-mt-24 py-16 lg:py-24"
+    className="scroll-mt-24 py-10 sm:py-16 lg:py-24"
   >
     <h2 className="text-h2">Experience</h2>
     <ol className="mt-8 space-y-10">

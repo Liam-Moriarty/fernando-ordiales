@@ -7,7 +7,7 @@ export const Contact = () => (
   <section
     id="contact"
     data-trace-node="contact"
-    className="scroll-mt-24 py-16 lg:py-24"
+    className="scroll-mt-24 py-10 sm:py-16 lg:py-24"
   >
     <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,38%)]">
       <div>

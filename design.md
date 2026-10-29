@@ -125,12 +125,12 @@ banned (see Don'ts). Mono + muted color is how meta text distinguishes itself.
 
 Scale (px): `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 
-| Context            | Mobile (<768) | Tablet | Desktop (≥1024) |
-| ------------------ | ------------- | ------ | --------------- |
-| Section padding-y  | 64            | 96     | 128             |
-| Container gutter-x | 20            | 32     | 48              |
-| Heading → content  | 24            | 32     | 32              |
-| Between projects   | 48            | 64     | 64              |
+| Context            | Mobile (<768)                                     | Tablet | Desktop (≥1024) |
+| ------------------ | ------------------------------------------------- | ------ | --------------- |
+| Section padding-y  | 40 (tightened 2026-10-29; 64 read huge on phones) | 96     | 128             |
+| Container gutter-x | 20                                                | 32     | 48              |
+| Heading → content  | 24                                                | 32     | 32              |
+| Between projects   | 48                                                | 64     | 64              |
 
 Whitespace is the main luxury signal; when in doubt, take the larger step.
 

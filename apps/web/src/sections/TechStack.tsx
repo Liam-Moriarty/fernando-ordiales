@@ -8,7 +8,7 @@ export const TechStack = () => (
   <section
     id="stack"
     data-trace-node="tech stack"
-    className="scroll-mt-24 py-16 lg:py-24"
+    className="scroll-mt-24 py-10 sm:py-16 lg:py-24"
   >
     <h2 className="text-h2">Tech stack</h2>
     <p className="mt-3 max-w-[68ch] text-muted">
