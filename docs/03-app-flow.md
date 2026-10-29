@@ -28,9 +28,14 @@ What happens when someone clicks. Wireframes live in `design.md` §6.
 ### Flow 2 · Read a case study
 
 - **Who:** Visitor
-- **Steps:** home → "Selected work" row (whole row is the link) →
+- **Steps:** home → a "Selected work" row or a "More projects" link →
   `/work/:slug` → "← Work" returns to `/#work`; "Next: <project>" cycles
-  through the three projects.
+  through all projects.
+- **Gallery:** drag or flick the top card (Tinder-style) to see the next
+  screenshot; Previous/Next buttons and a counter cover keyboard and
+  reduced-motion users. Swiping never means accept/reject.
+- **Live links:** "Visit live site" / "Source code" buttons appear when the
+  project has them.
 - **Unknown slug:** the not-found page with a link home (no crash, no blank).
 
 ### Flow 3 · Theme

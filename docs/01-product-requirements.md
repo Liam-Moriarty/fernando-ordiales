@@ -43,18 +43,25 @@ One anonymous role; there is no sign-in and no stored user data.
 - **Used by:** Visitor
 - **Priority:** Must
 - **Done when:**
-  - [x] Three projects render as full-width rows; each shows a 4-segment
-        layer indicator of the stack layers Fernando owned; the whole row
-        links to the case study.
+  - [x] The three featured projects render as full-width rows; each shows a
+        4-segment layer indicator of the stack layers Fernando owned; the
+        whole row links to the case study.
+  - [x] A compact "More projects" list links the four earlier projects to
+        their case studies.
 
 ### F3 · Case study pages (`/work/:slug`)
 
 - **Used by:** Visitor
 - **Priority:** Must
 - **Done when:**
-  - [x] Problem, what I built, key decisions, results, links, architecture
-        diagram and screenshots render per project; unknown slugs show the
+  - [x] Problem, what I built, key decisions, results, architecture diagram
+        and screenshots render per project; unknown slugs show the
         not-found page.
+  - [x] The stack renders as chips, with "Visit live site" and "Source
+        code" buttons when a project has those links.
+  - [x] Multi-image galleries browse as a Tinder-style swipe deck (drag or
+        flick to move on, buttons + counter as the keyboard path), with no
+        accept/reject semantics.
 
 ### F4 · Capabilities as one connected system
 

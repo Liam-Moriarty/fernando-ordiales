@@ -27,21 +27,37 @@ headless Chromium (both themes, trace scrub, case study, 390px mobile, no
 console errors). Bundle sizes are logged in
 [02](02-technical-requirements.md).
 
+## Added after the first build (2026-10-29, Fernando's requests)
+
+- Images live in per-project folders: `public/projects/<slug>/…`. Raw drops
+  go in `public/project-photos/<project>/` (git-ignored); resized copies are
+  served. Flinki (8) and Switchboard (6) real screenshots are in.
+- Case-study galleries are a Tinder-style swipe deck (`SwipeDeck`): drag or
+  flick a card to browse, buttons and a counter for keyboard users; swiping
+  carries no accept/reject meaning.
+- Four earlier projects from the old portfolio (custom playlist site, task
+  monitoring, budget tracker, sales dashboard) have case studies and sit in
+  a "More projects" list under Selected work; images copied from
+  `original-portfolio` into their own folders.
+- Case studies show the stack as chips plus "Visit live site" / "Source
+  code" buttons when links exist (per the old site's pattern).
+- The hero particle field is mouse-draggable; the auto-drift never stops.
+- Resume downloads point at `/docs/Ordiales-Fernando-Resume.pdf` (the real
+  PDF); the placeholder was removed. GitHub URL is set in `profile.ts`.
+
 ## Still open (needs Fernando)
 
-- [ ] GitHub and LinkedIn URLs in `apps/web/src/content/profile.ts` (empty
-      links are hidden until filled).
-- [ ] Real screenshots for Switchboard and FGP over the placeholders in
-      `apps/web/public/projects/` (same filenames, or edit `images[].src` in
-      `apps/web/src/content/projects.ts`). Flinki's eight screenshots are in
-      (from `project-photos/`, resized to `/projects/flinki-N.jpg`; the raw
-      drops folder is git-ignored). Check employer/client approval for
-      Switchboard and Flinki imagery before publishing.
-- [ ] The real resume at `apps/web/public/resume.pdf`.
-- [ ] Project links/metrics in `projects.ts` (`links.live`, `links.repo`).
+- [ ] LinkedIn URL in `apps/web/src/content/profile.ts` (hidden until set).
+- [ ] A real FGP screenshot over
+      `public/projects/fgp-migration/placeholder.svg`.
+- [ ] Live/repo links for the three MERN projects and metrics where
+      claimable (`links` in `projects.ts`).
+- [ ] Confirm employer/client approval for Switchboard and Flinki imagery
+      before publishing.
 - [ ] Production domain: replace `REPLACE-WITH-DOMAIN` in
       `public/sitemap.xml`, un-comment the sitemap line in
-      `public/robots.txt`, and make `og:image` absolute in `index.html`.
+      `public/robots.txt`, and make `og:image` absolute in `index.html`
+      (add the four legacy case-study URLs to the sitemap too).
 - [ ] Enable a deploy (the CD workflows stay inert until chosen).
 - [ ] Approve docs 01–06 and flip their status lines.
 

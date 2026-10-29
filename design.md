@@ -352,6 +352,14 @@ All states = default / hover / active / focus-visible / disabled.
   border-only chip, muted; never colored per-technology.
 - **Copy-email button:** ghost with copy icon; after copy shows "Copied" +
   check, reverts after 1.6s; also fires a polite `aria-live` announcement.
+- **Swipe deck (case-study galleries, added 2026-10-29 at Fernando's
+  request):** a Tinder-style card stack — drag or flick the top screenshot
+  past a distance/velocity threshold and it flies off with a slight rotation
+  while the next card settles in; below the threshold it springs back.
+  Browsing only, no accept/reject meaning. Previous/Next ghost buttons and a
+  mono counter ("2 / 6") are the keyboard path; under reduced motion cards
+  crossfade and dragging is off. The hero particle field is likewise
+  mouse-draggable (grab cursor) while its drift continues underneath.
 - **Inputs (if a contact form ever exists — none planned):** surface bg,
   border, 4px radius; focus: accent border + ring; error: error border +
   caption message below. Documented so a future addition doesn't improvise.
