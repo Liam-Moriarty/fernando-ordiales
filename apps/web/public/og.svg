@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Open Graph card, dark variant (design.md §13). Colors fixed per §2;
+       static assets can't read CSS variables. -->
+  <rect width="1200" height="630" fill="#131316"/>
+  <path d="M96 96 V 534" stroke="#2e2a42" stroke-width="3"/>
+  <path d="M96 96 V 400" stroke="#b4a5e8" stroke-width="3"/>
+  <circle cx="96" cy="188" r="9" fill="#b4a5e8"/>
+  <circle cx="96" cy="400" r="9" fill="#b4a5e8"/>
+  <circle cx="96" cy="534" r="9" fill="#131316" stroke="#2e2a42" stroke-width="3"/>
+  <text x="168" y="208" font-family="Helvetica, Arial, sans-serif" font-size="64" font-weight="600" fill="#e9e9ee">Fernando Ordiales</text>
+  <text x="168" y="310" font-family="Helvetica, Arial, sans-serif" font-size="44" fill="#a3a3af">I take AI products from</text>
+  <text x="168" y="370" font-family="Helvetica, Arial, sans-serif" font-size="44" fill="#a3a3af">prompt to production.</text>
+  <text x="168" y="520" font-family="Menlo, monospace" font-size="26" fill="#595964">AI engineer · Manila, PH</text>
+</svg>

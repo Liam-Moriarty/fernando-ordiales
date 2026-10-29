@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO(Fernando): once the production domain exists, add:
+# Sitemap: https://<domain>/sitemap.xml
