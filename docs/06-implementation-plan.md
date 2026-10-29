@@ -103,7 +103,11 @@ console errors). Bundle sizes are logged in
       `public/sitemap.xml`, un-comment the sitemap line in
       `public/robots.txt`, and make `og:image` absolute in `index.html`
       (add the four legacy case-study URLs to the sitemap too).
-- [ ] Enable a deploy (the CD workflows stay inert until chosen).
+- [x] Enable a deploy — Fernando deployed to Vercel himself
+      (ordiales.vercel.app, 2026-10-29); the CD workflows stay inert.
+      `apps/web/vercel.json` rewrites every path to `index.html` so client
+      routes survive a refresh; the Vercel project's Root Directory must be
+      `apps/web` for that file to be read.
 - [ ] Approve docs 01–06 and flip their status lines.
 
 ## Named gaps (deliberate, later-stage)
