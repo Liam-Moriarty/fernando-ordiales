@@ -1,0 +1,10 @@
+
+
+# Check if pnpm-lock.yaml changed
+CHANGED=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)
+
+if echo "$CHANGED" | grep -q "pnpm-lock.yaml"; then
+  echo "📦 pnpm-lock.yaml changed. Reinstalling dependencies..."
+  pnpm install
+  echo "✅ Dependencies updated!"
+fi

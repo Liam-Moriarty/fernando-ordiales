@@ -1,0 +1,113 @@
+name: CD — Stage
+
+on:
+  push:
+    branches:
+      - stage
+
+permissions:
+  contents: read
+
+# Deploys to the same environment run one at a time, in order.
+concurrency:
+  group: cd-stage
+  cancel-in-progress: false
+
+env:
+  APP_NAME: 'web'
+
+jobs:
+  # -------------------------------------------------------
+  # JOB 1 — Run all checks before deploying
+  # -------------------------------------------------------
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm, Node and dependencies
+        uses: ./.github/actions/setup
+
+      - name: Lint
+        run: pnpm turbo run lint --filter=${{ env.APP_NAME }}
+
+      - name: Typecheck
+        run: pnpm turbo run typecheck --filter=${{ env.APP_NAME }}
+
+      - name: Test
+        run: pnpm turbo run test --filter=${{ env.APP_NAME }}
+
+  # -------------------------------------------------------
+  # JOB 2 — Deploy only if checks pass
+  # -------------------------------------------------------
+  deploy-stage:
+    runs-on: ubuntu-latest
+    needs: checks # ← waits for checks job to pass
+    environment:
+      name: staging
+      url: ${{ vars.STAGE_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm, Node and dependencies
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: pnpm turbo run build --filter=${{ env.APP_NAME }}
+        env:
+          VITE_APP_ENV: staging
+          VITE_API_URL: ${{ secrets.STAGE_API_URL }}
+
+      # -------------------------------------------------------
+      # DEPLOY STEP — replace with your platform (same options as cd-dev.yml)
+      # -------------------------------------------------------
+
+      # OPTION A: Vercel
+      # - name: Deploy to Vercel
+      #   uses: amondnet/vercel-action@v42
+      #   with:
+      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
+      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+      #     working-directory: apps/web
+      #     alias-domains: stage.your-app.vercel.app
+
+      # OPTION B: Netlify
+      # - name: Deploy to Netlify
+      #   uses: nwtgck/actions-netlify@v3
+      #   with:
+      #     publish-dir: apps/web/dist
+      #     deploy-message: "Deploy from stage branch"
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      # OPTION C: AWS S3 + CloudFront
+      # - name: Deploy to S3
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: ap-southeast-1
+      # - run: aws s3 sync apps/web/dist s3://${{ secrets.STAGE_S3_BUCKET }} --delete
+      # - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGE_CF_ID }} --paths "/*"
+
+      # OPTION D: VPS via SSH
+      # - name: Deploy via SSH
+      #   uses: appleboy/ssh-action@v1
+      #   with:
+      #     host: ${{ secrets.STAGE_SSH_HOST }}
+      #     username: ${{ secrets.STAGE_SSH_USER }}
+      #     key: ${{ secrets.STAGE_SSH_KEY }}
+      #     script: |
+      #       cd /var/www/stage
+      #       git pull origin stage
+      #       pnpm install
+      #       pnpm turbo run build --filter=web
+      #       pm2 restart stage-app
+
+      - name: Notify on Success
+        run: echo "✅ Stage deployment successful!"

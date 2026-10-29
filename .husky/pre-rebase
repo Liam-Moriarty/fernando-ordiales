@@ -1,0 +1,11 @@
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Block rebasing on main or master
+if [ "$BRANCH" = "main" ] || [ "$BRANCH" = "master" ]; then
+  echo "❌ ERROR: You cannot rebase on '$BRANCH' directly."
+  echo "   Please create a feature branch first."
+  exit 1
+fi
+
+echo "✅ Rebase check passed."

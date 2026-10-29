@@ -1,0 +1,7 @@
+
+echo "📝 Validating commit message..."
+
+# Validate commit message against conventional commits
+pnpm commitlint --edit $1
+
+echo "✅ Commit message is valid!"
