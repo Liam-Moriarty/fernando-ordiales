@@ -19,9 +19,20 @@ const readPalette = (): Palette => ({
   accent: readToken('--theme-accent'),
 });
 
-const Cloud = ({ count, palette }: { count: number; palette: Palette }) => {
+type DragRotation = { x: number; y: number };
+
+const Cloud = ({
+  count,
+  palette,
+  dragRotation,
+}: {
+  count: number;
+  palette: Palette;
+  dragRotation: React.RefObject<DragRotation>;
+}) => {
   const ref = useRef<Points>(null);
   const pointer = useRef({ x: 0, y: 0 });
+  const drift = useRef(0);
 
   const { positions, colors } = useMemo(() => {
     const points = generateFieldPoints(count, 7);
@@ -51,9 +62,13 @@ const Cloud = ({ count, palette }: { count: number; palette: Palette }) => {
   useFrame((_, delta) => {
     const cloud = ref.current;
     if (!cloud) return;
-    cloud.rotation.y += delta * 0.02;
+    // The drift never stops; dragging adds an offset on top of it, and the
+    // cursor tilt stays a gentle lean (design.md §9 + draggable cloud).
+    drift.current += delta * 0.02;
+    const drag = dragRotation.current;
+    cloud.rotation.y += (drift.current + drag.y - cloud.rotation.y) * 0.08;
     cloud.rotation.x +=
-      (pointer.current.y * MAX_TILT - cloud.rotation.x) * 0.05;
+      (pointer.current.y * MAX_TILT + drag.x - cloud.rotation.x) * 0.08;
     cloud.rotation.z +=
       (pointer.current.x * MAX_TILT - cloud.rotation.z) * 0.05;
   });
@@ -89,6 +104,8 @@ const ParticleField = ({ count }: { count: number }) => {
   const [onScreen, setOnScreen] = useState(true);
   const [tabVisible, setTabVisible] = useState(true);
   const [palette, setPalette] = useState<Palette>(readPalette);
+  const dragRotation = useRef<DragRotation>({ x: 0, y: 0 });
+  const grab = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const element = wrapper.current;
@@ -118,15 +135,51 @@ const ParticleField = ({ count }: { count: number }) => {
     return () => observer.disconnect();
   }, []);
 
+  // Mouse-only drag: spin the cloud with the cursor without ever pausing the
+  // drift. Touch stays free for page scrolling.
+  const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse') return;
+    grab.current = { x: event.clientX, y: event.clientY };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const from = grab.current;
+    if (!from) return;
+    dragRotation.current = {
+      x: Math.min(
+        Math.max(
+          dragRotation.current.x + (event.clientY - from.y) * 0.004,
+          -0.7
+        ),
+        0.7
+      ),
+      y: dragRotation.current.y + (event.clientX - from.x) * 0.004,
+    };
+    grab.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const releaseGrab = () => {
+    grab.current = null;
+  };
+
   return (
-    <div ref={wrapper} className="h-full w-full">
+    <div
+      ref={wrapper}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={releaseGrab}
+      onPointerCancel={releaseGrab}
+      onPointerLeave={releaseGrab}
+      className="h-full w-full cursor-grab active:cursor-grabbing"
+    >
       <Canvas
         dpr={[1, 1.5]}
         frameloop={onScreen && tabVisible ? 'always' : 'never'}
         camera={{ position: [0, 0, 2.1], fov: 60 }}
         gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
       >
-        <Cloud count={count} palette={palette} />
+        <Cloud count={count} palette={palette} dragRotation={dragRotation} />
       </Canvas>
     </div>
   );
