@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { Trace } from './Trace';
+import { Trace, traceScale } from './Trace';
+
+describe('traceScale', () => {
+  it('maps the drawn range so the last node lands at exactly 1', () => {
+    const at = traceScale(100, 1100);
+    expect(at(1100)).toBe(1);
+    expect(at(600)).toBe(0.5);
+    expect(at(0)).toBe(0);
+  });
+});
 
 describe('Trace', () => {
   it('renders a static, fully drawn rail under reduced motion', () => {

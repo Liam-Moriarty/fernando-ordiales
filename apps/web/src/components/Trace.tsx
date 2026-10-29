@@ -6,6 +6,14 @@ import { prefersReducedMotion } from '../lib/motion';
 // capability rows. The only scroll-driven motion on the site. Under reduced
 // motion (or without matchMedia) it renders fully drawn and GSAP never loads.
 
+// Maps a rail y-coordinate onto the scrubbed timeline [0, 1], where 1 is the
+// moment the drawn line reaches the LAST NODE (the line ends there, so dots
+// and branches must be scaled to the same end or they fire early).
+export const traceScale =
+  (start: number, end: number) =>
+  (y: number): number =>
+    Math.min(Math.max((y - start) / Math.max(end - start, 1), 0), 1);
+
 type Geometry = {
   height: number;
   lineX: number;
@@ -56,9 +64,7 @@ const measure = (wrapper: HTMLDivElement): Geometry | null => {
 export const Trace = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [geometry, setGeometry] = useState<Geometry | null>(null);
-  const [staticMode] = useState(
-    () => typeof window.matchMedia !== 'function' || prefersReducedMotion()
-  );
+  const [staticMode] = useState(() => prefersReducedMotion());
 
   useLayoutEffect(() => {
     const wrapper = wrapperRef.current;
@@ -99,7 +105,7 @@ export const Trace = () => {
         const main = wrapper.querySelector<SVGPathElement>('[data-trace-path]');
         if (!main) return;
         const length = main.getTotalLength();
-        const total = Math.max(geometry.height - geometry.start, 1);
+        const lastNodeY = geometry.nodes.at(-1)?.y ?? geometry.height;
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: wrapper,
@@ -116,8 +122,7 @@ export const Trace = () => {
           0
         );
 
-        const at = (y: number) =>
-          Math.min(Math.max((y - geometry.start) / total, 0), 0.98);
+        const at = traceScale(geometry.start, lastNodeY);
 
         for (const dot of wrapper.querySelectorAll<SVGCircleElement>(
           '[data-trace-node-dot]'
@@ -165,7 +170,7 @@ export const Trace = () => {
         >
           {/* Track: the undrawn path, always visible. */}
           <path
-            d={`M ${geometry.lineX} ${geometry.start} V ${geometry.height ? (geometry.nodes.at(-1)?.y ?? geometry.height) : 0}`}
+            d={`M ${geometry.lineX} ${geometry.start} V ${geometry.nodes.at(-1)?.y ?? geometry.height}`}
             fill="none"
             stroke="var(--color-accent-quiet)"
             strokeWidth="1.5"

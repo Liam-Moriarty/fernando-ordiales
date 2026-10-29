@@ -3,10 +3,11 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { profile } from '../content/profile';
 import { ButtonLink } from '../components/Button';
 import { easeSettle } from '../lib/motion';
+import { loadParticleField } from '../three/loadParticleField';
 import { StaticField } from '../three/StaticField';
 import { useSceneGate } from '../three/useSceneGate';
 
-const ParticleField = lazy(() => import('../three/ParticleField'));
+const ParticleField = lazy(loadParticleField);
 
 // Mount the heavy scene only on idle, after the page is interactive.
 const useIdleReady = (wanted: boolean): boolean => {
@@ -37,8 +38,15 @@ export const Hero = () => {
   const reduced = useReducedMotion();
   const mode = useSceneGate();
   const sceneReady = useIdleReady(mode === 'webgl');
+  // Reduced motion: one quick fade, nothing translates (design.md §9).
   const at = (delay: number, duration: number) =>
-    reduced ? enter(0, 0.2) : enter(delay, duration);
+    reduced
+      ? {
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          transition: { duration: 0.2 },
+        }
+      : enter(delay, duration);
 
   return (
     <section className="grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,38%)] lg:py-32">

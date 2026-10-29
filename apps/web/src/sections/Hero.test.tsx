@@ -19,6 +19,13 @@ describe('Hero', () => {
     ).toBe('/resume.pdf');
   });
 
+  it('never translates under reduced motion', () => {
+    // design.md §9 reduced motion: fades only — nothing translates.
+    render(<Hero />);
+    const h1 = screen.getByRole('heading', { level: 1 });
+    expect(h1.style.transform).not.toMatch(/translate/);
+  });
+
   it('falls back to the static field when the scene is gated off', () => {
     // jsdom has no WebGL and the test setup forces reduced motion, so the
     // gate must choose the static SVG and never mount a canvas.

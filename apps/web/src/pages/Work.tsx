@@ -39,6 +39,7 @@ export const Work = () => {
       <article className="mx-auto max-w-page px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <Link
           to="/#work"
+          aria-label="Back to work"
           className="inline-flex items-center gap-2 text-sm text-muted transition-colors duration-150 hover:text-text"
         >
           <ArrowLeftIcon size={16} />

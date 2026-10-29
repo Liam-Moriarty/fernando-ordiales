@@ -31,9 +31,9 @@ export const Nav = () => {
           Fernando Ordiales
         </Link>
         <div className="flex flex-1 items-center gap-5">
-          <a href="/#work" className={navLink}>
+          <Link to="/#work" className={navLink}>
             Work
-          </a>
+          </Link>
           <NavLink to="/about" className={navLink}>
             About
           </NavLink>

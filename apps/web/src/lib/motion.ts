@@ -9,6 +9,8 @@ export const durBase = 0.22;
 export const durEnter = 0.28;
 export const durSlow = 0.42;
 
+// Without matchMedia there is no way to ask, so default to reduced: a quiet
+// page beats a full motion sequence the visitor may have opted out of.
 export const prefersReducedMotion = (): boolean =>
-  typeof window.matchMedia === 'function' &&
+  typeof window.matchMedia !== 'function' ||
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;

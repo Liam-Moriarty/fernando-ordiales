@@ -13,7 +13,8 @@ const canUseWebgl = (): boolean => {
 };
 
 const decide = (): SceneMode => {
-  if (typeof window.matchMedia !== 'function' || prefersReducedMotion()) {
+  // prefersReducedMotion also covers a missing matchMedia (reduced default).
+  if (prefersReducedMotion()) {
     return 'static';
   }
   const memory = (navigator as { deviceMemory?: number }).deviceMemory;

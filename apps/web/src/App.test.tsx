@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import { render, screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { AppRoutes } from './App';
 
@@ -25,6 +26,24 @@ describe('AppRoutes', () => {
     expect(email.getAttribute('href')).toBe(
       'mailto:fernando.ordiales23@gmail.com'
     );
+  });
+
+  it('lands on the work section when returning from a case study', async () => {
+    // The hash target only exists after the old page has finished exiting,
+    // so the scroll must retry until the new page is mounted.
+    const scrolled = vi.spyOn(Element.prototype, 'scrollIntoView');
+    const user = userEvent.setup();
+    renderAt('/work/switchboard');
+
+    await user.click(screen.getByRole('link', { name: 'Back to work' }));
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole('heading', { name: 'Selected work' })
+      ).toBeDefined()
+    );
+    await waitFor(() => expect(scrolled).toHaveBeenCalled());
+    scrolled.mockRestore();
   });
 
   it('renders the not-found page for an unknown address', () => {
