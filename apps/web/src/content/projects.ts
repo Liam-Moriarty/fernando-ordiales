@@ -234,10 +234,28 @@ export const projects: Project[] = [
     links: {},
     images: [
       {
-        src: '/projects/fgp-migration/placeholder.svg',
-        alt: 'Placeholder for a screenshot of the migrated FGP site.',
-        width: 1200,
-        height: 760,
+        src: '/projects/fgp-migration/1.jpg',
+        alt: 'The migrated FGP homepage: navigation, photo carousel, and live view and visitor counters.',
+        width: 1600,
+        height: 1118,
+      },
+      {
+        src: '/projects/fgp-migration/2.jpg',
+        alt: 'The customs-brokerage page: partner photos and a four-card "why choose us" section.',
+        width: 1600,
+        height: 1140,
+      },
+      {
+        src: '/projects/fgp-migration/4.jpg',
+        alt: 'The services section — ecommerce, international trade, projects, turn-key operation — above About Us.',
+        width: 1600,
+        height: 1050,
+      },
+      {
+        src: '/projects/fgp-migration/3.jpg',
+        alt: "The chairman page with the company leadership's background and roles.",
+        width: 1600,
+        height: 1049,
       },
     ],
   },

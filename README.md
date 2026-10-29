@@ -15,10 +15,9 @@ project stage.
 ## Finishing the site (content still owned by Fernando)
 
 - LinkedIn URL in `apps/web/src/content/profile.ts` (hidden until set).
-- A real FGP screenshot over
-  `apps/web/public/projects/fgp-migration/placeholder.svg`. Images live one
-  folder per project under `public/projects/<slug>/`; drop raw originals in
-  `apps/web/public/project-photos/` (git-ignored) and serve resized copies.
+- Images live one folder per project under `public/projects/<slug>/`; drop
+  raw originals in `apps/web/public/project-photos/` (git-ignored) and serve
+  resized copies.
 - Live/repo links for the three MERN projects in `projects.ts`; production
   domain in `public/sitemap.xml`, `public/robots.txt` and the `og:image` tag
   in `apps/web/index.html`.
