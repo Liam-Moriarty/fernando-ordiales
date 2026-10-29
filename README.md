@@ -1,26 +1,29 @@
-# pnpm React TypeScript monorepo template
+# Fernando Ordiales — portfolio
 
-A starting point for React apps that need a real toolchain from day one: a
-pnpm and Turborepo monorepo with React 19, Vite 8, TypeScript 7, Tailwind CSS
-4 and Vitest 5, shared lint and TypeScript configs, git hooks that enforce
-conventional commits, Changesets, and GitHub Actions for CI, pull request
-previews and per-branch deploys.
+The personal portfolio of Fernando Ordiales, AI engineer: a React SPA in
+`apps/web` with light/dark themes, a scroll-drawn "trace" (GSAP), a lazy
+Three.js hero field, and case-study pages. The visual spec is
+[`design.md`](design.md); the planning docs in [`docs/`](docs/README.md)
+record what was built and what's still open.
 
-It also comes with a process: six planning docs to fill in before anyone builds
-anything, and a [`CLAUDE.md`](CLAUDE.md) that keeps AI-assisted work sized to
-what the project actually needs.
+The repo is built on a pnpm + Turborepo template: React 19, Vite 8,
+TypeScript 7, Tailwind CSS 4, Vitest 5, shared lint/TS configs, git hooks
+that enforce conventional commits, Changesets, and GitHub Actions for CI and
+PR previews. [`CLAUDE.md`](CLAUDE.md) keeps AI-assisted work sized to the
+project stage.
 
-## Before you write any code
+## Finishing the site (content still owned by Fernando)
 
-1. **Fill in the six planning docs** in [`docs/`](docs/README.md) and get them
-   approved: product requirements, technical requirements, app flow, design
-   brief, database schema and implementation plan. Building starts when all six
-   are approved.
-2. **Set the project stage** at the top of [`CLAUDE.md`](CLAUDE.md):
-   Prototype, MVP or Production. It decides how much engineering rigour
-   applies, for people and for Claude.
-3. **Work through [Setting up a new project](#setting-up-a-new-project)**
-   below.
+- GitHub/LinkedIn URLs in `apps/web/src/content/profile.ts` (empty links stay
+  hidden).
+- Real screenshots over `apps/web/public/projects/*.svg` (same filename, or
+  change `images[].src` in `apps/web/src/content/projects.ts`).
+- The real resume at `apps/web/public/resume.pdf`.
+- Project links in `projects.ts`; production domain in `public/sitemap.xml`,
+  `public/robots.txt` and the `og:image` tag in `apps/web/index.html`.
+
+The full list with checkboxes:
+[`docs/06-implementation-plan.md`](docs/06-implementation-plan.md).
 
 ## Requirements
 
@@ -41,17 +44,11 @@ pnpm install   # also installs the git hooks
 pnpm dev       # web app on http://localhost:5173
 ```
 
-The page it opens is a quick guide to the repo, drawn as a blueprint: where
-everything lives, setup, scripts, the daily workflow and the rules.
+The page it opens is the portfolio itself.
 
-## Setting up a new project
+## Remaining repo setup
 
-- [ ] Fill in and approve the six docs in [`docs/`](docs/README.md).
-- [ ] Set the stage line in [`CLAUDE.md`](CLAUDE.md).
-- [ ] Rename the root package in `package.json` (it's still
-      `with-vite-react`).
-- [ ] Replace the landing page in `apps/web/src/landing` and the sample
-      `Header` and `Counter` components, with their tests.
+- [ ] Approve the six docs in [`docs/`](docs/README.md) (drafted 2026-10-29).
 - [ ] Put local settings in `apps/web/.env.local` (git-ignored). See
       [Environment variables](#environment-variables).
 - [ ] For pull request previews, add the repository secrets `VERCEL_TOKEN`,
@@ -76,7 +73,7 @@ everything lives, setup, scripts, the daily workflow and the rules.
 ```text
 .
 ├── apps/
-│   ├── web/                 React 19 + Vite 8 + Tailwind CSS 4 single-page app
+│   ├── web/                 the portfolio: React 19 + Vite 8 + Tailwind CSS 4 SPA
 │   └── server/              placeholder, not a workspace package yet
 ├── packages/
 │   ├── ui/                  @repo/ui: shared React components
@@ -221,11 +218,11 @@ points it at the package source:
 @source '../../../packages/ui';
 ```
 
-A new app that uses `@repo/ui` needs the same two lines, or the components
-render unstyled. Colours, fonts and other design tokens go in an `@theme`
-block in that file; see the [design brief](docs/04-design-brief.md). The
-sample components use those tokens too (`bg-surface`, `border-primary`,
-`font-display`), so an app that uses them defines the same token names.
+The portfolio doesn't import `@repo/ui` right now, so `apps/web/src/style.css`
+has no `@source` line — add it back (with the dependency) the first time `web`
+uses a shared component, or those components render unstyled. Colours, fonts
+and the other design tokens live in that file's `@theme` block; see the
+[design brief](docs/04-design-brief.md) and [`design.md`](design.md).
 
 ## Adding Supabase
 

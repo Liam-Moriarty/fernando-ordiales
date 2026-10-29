@@ -1,53 +1,91 @@
 # 01 · Product requirements
 
-**Status:** Not started · **Owner:** TODO · **Approved by:** TODO · **Date:**
-TODO
+**Status:** Draft · **Owner:** Fernando Ordiales · **Approved by:** pending ·
+**Date:** 2026-10-29
 
 What the app does, feature by feature. If a feature isn't in this document, it
 isn't in the build.
 
 ## Summary
 
-TODO: Two or three sentences. What is this app, who is it for, and what
-problem does it solve for them?
+A personal portfolio for Fernando Ordiales, AI engineer. It shows recruiters,
+hiring managers and founders what he builds — AI products end to end — and
+funnels every visit toward one action: emailing him. The full design rationale
+lives in [`design.md`](../design.md) (approved 2026-10-29).
 
 ## Goals
 
-TODO: How you'll know the app worked, e.g. "clients book appointments without
-emailing us". Three or fewer.
+- A visitor understands who Fernando is, what he builds, and how to contact
+  him within the first screen.
+- The email action is reachable in one click from anywhere on the site.
+- Each featured project shows which layers of the stack he owned.
 
 ## Users
 
-Everyone who uses the app, grouped by what they're allowed to do. These roles
-carry through to the app flow (03) and the access rules (05).
+| Role    | Who they are                                  | What they're trying to do              |
+| ------- | --------------------------------------------- | -------------------------------------- |
+| Visitor | Recruiters, hiring managers, founders/clients | Judge his work quickly and contact him |
 
-| Role | Who they are | What they're trying to do |
-| ---- | ------------ | ------------------------- |
-| TODO | TODO         | TODO                      |
+One anonymous role; there is no sign-in and no stored user data.
 
 ## Features
 
-One block per feature. Number them (F1, F2, …) so the implementation plan can
-refer to them.
+### F1 · Hero with contact actions
 
-### F1 · TODO feature name
-
-- **Used by:** TODO: role(s) from the table above
-- **What they're trying to do:** TODO
-- **Priority:** TODO: Must, Should or Could
+- **Used by:** Visitor
+- **Priority:** Must
 - **Done when:**
-  - [ ] TODO: a check anyone can verify by using the app, e.g. "a client sees
-        only their own invoices"
+  - [x] Headline, support line, "Email me" (mailto), "Download resume (PDF)"
+        and "View work" render before any script-heavy visual loads.
 
-<!-- Copy the F1 block for each feature. -->
+### F2 · Selected work rows with layer indicators
 
-## Out of scope
+- **Used by:** Visitor
+- **Priority:** Must
+- **Done when:**
+  - [x] Three projects render as full-width rows; each shows a 4-segment
+        layer indicator of the stack layers Fernando owned; the whole row
+        links to the case study.
 
-Things someone might reasonably expect that this build won't do. Writing them
-down stops them creeping in.
+### F3 · Case study pages (`/work/:slug`)
 
-- TODO
+- **Used by:** Visitor
+- **Priority:** Must
+- **Done when:**
+  - [x] Problem, what I built, key decisions, results, links, architecture
+        diagram and screenshots render per project; unknown slugs show the
+        not-found page.
 
-## Open questions
+### F4 · Capabilities as one connected system
 
-- TODO
+- **Used by:** Visitor
+- **Priority:** Must
+- **Done when:**
+  - [x] The four stack layers render as rows joined by the trace, not as
+        separate cards.
+
+### F5 · Experience timeline and About page
+
+- **Used by:** Visitor
+- **Priority:** Should
+- **Done when:**
+  - [x] Experience lists roles newest first; `/about` has a short bio,
+        education and the resume download.
+
+### F6 · Contact section
+
+- **Used by:** Visitor
+- **Priority:** Must
+- **Done when:**
+  - [x] Email shown in display size, mailto button, copy-email button with a
+        "Copied" confirmation that fails quietly when the clipboard is
+        unavailable, availability line.
+
+### F7 · Theme toggle and signature motion
+
+- **Used by:** Visitor
+- **Priority:** Should
+- **Done when:**
+  - [x] Light/dark themes follow the system, persist the choice and never
+        flash; the scroll-drawn trace and the lazy Three.js field degrade to
+        static variants under reduced motion or weak devices.

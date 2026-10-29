@@ -1,79 +1,48 @@
 # 02 · Technical requirements
 
-**Status:** Not started · **Owner:** TODO · **Approved by:** TODO · **Date:**
-TODO
+**Status:** Draft · **Owner:** Fernando Ordiales · **Approved by:** pending ·
+**Date:** 2026-10-29
 
 What the app is built on, where it runs, and which systems it connects to.
-Decided once and written down. Changing a tool after approval means updating
-this document first.
 
 ## Platform
 
-The template already makes these choices. Confirm each one, or record why
-you're changing it in the decision log at the end.
-
-| Area              | Choice                          | Notes                                                   |
-| ----------------- | ------------------------------- | ------------------------------------------------------- |
-| Frontend          | React 19, Vite 8, TypeScript 7  | Single-page app in `apps/web`                           |
-| Styling           | Tailwind CSS 4                  | Configured in `apps/web/src/style.css`, no config file  |
-| Monorepo          | pnpm 10 workspaces, Turborepo 2 |                                                         |
-| Runtime           | Node.js 26                      | Pinned in `.nvmrc`                                      |
-| Testing           | Vitest 5, Testing Library       |                                                         |
-| Database and auth | Supabase                        | TODO: confirm, or write "not needed"                    |
-| Hosting           | Vercel                          | PR previews are wired up. TODO: confirm production host |
-| Server code       | None yet                        | TODO: only if something needs a server (webhooks, keys) |
+| Area              | Choice                                                  | Notes                                                       |
+| ----------------- | ------------------------------------------------------- | ----------------------------------------------------------- |
+| Frontend          | React 19, Vite 8, TypeScript 7                          | Single-page app in `apps/web`                               |
+| Styling           | Tailwind CSS 4                                          | Tokens in `apps/web/src/style.css` `@theme`; no config file |
+| Routing           | react-router 7                                          | `/`, `/work/:slug`, `/about`, catch-all                     |
+| Motion            | framer-motion (UI), GSAP ScrollTrigger (the trace only) | Division of labour per `design.md` §9                       |
+| 3D                | three + @react-three/fiber                              | One lazy hero scene with a static SVG fallback              |
+| Fonts             | Fontsource (Instrument Sans Variable, Spline Sans Mono) | Self-hosted, no runtime Google Fonts                        |
+| Icons             | @phosphor-icons/react                                   | Functional icons only                                       |
+| Monorepo          | pnpm 10 workspaces, Turborepo 2                         |                                                             |
+| Runtime           | Node.js 26                                              | Pinned in `.nvmrc`                                          |
+| Testing           | Vitest 5, Testing Library                               |                                                             |
+| Database and auth | Not needed                                              | No user data is stored; contact is a mailto                 |
+| Hosting           | Vercel (PR previews wired)                              | Production deploy not enabled yet; domain TBD               |
+| Server code       | None                                                    | Nothing needs a secret or a webhook                         |
 
 ## Project stage
 
-TODO: Prototype, MVP or Production, and why. Put the same value in the stage
-line of [`CLAUDE.md`](../CLAUDE.md); it decides how much engineering rigour the
-build gets.
+**Prototype.** Static personal site, no user data, no uptime promise. The same
+value is in the stage line of [`CLAUDE.md`](../CLAUDE.md).
 
 ## Environments
 
-Delete the rows you don't need. At Prototype, local plus PR previews is often
-enough.
-
-| Environment | URL                   | Git branch | Supabase project | Notes |
-| ----------- | --------------------- | ---------- | ---------------- | ----- |
-| Local       | http://localhost:5173 | any        | TODO             |       |
-| Development | TODO                  | `dev`      | TODO             |       |
-| Staging     | TODO                  | `stage`    | TODO             |       |
-| Production  | TODO                  | `main`     | TODO             |       |
-
-## Systems it connects to
-
-Every outside system: payment providers, email, CRMs, existing databases,
-third-party APIs.
-
-| System | What we send or receive | How it authenticates | Owner or contact |
-| ------ | ----------------------- | -------------------- | ---------------- |
-| TODO   | TODO                    | TODO                 | TODO             |
-
-## Configuration and secrets
-
-Anything prefixed `VITE_` is built into the browser bundle and is public.
-Secrets never get that prefix.
-
-| Name           | Public?       | Where it's set                | Purpose                            |
-| -------------- | ------------- | ----------------------------- | ---------------------------------- |
-| `VITE_APP_ENV` | Yes           | CD workflows                  | Which environment the build is for |
-| `VITE_API_URL` | Yes (bundled) | GitHub secret per environment | TODO                               |
-| TODO           | TODO          | TODO                          | TODO                               |
-
-## Targets
-
-Fill this in from MVP on. At Prototype, write "not yet".
-
-- **Expected users and data volume:** TODO
-- **Uptime target:** TODO
-- **Performance:** TODO: e.g. pages usable within 2 seconds on a phone
-- **Browsers and devices:** TODO
-- **Backups and recovery:** TODO: how much data you can afford to lose, and
-  how quickly the app must be back
+| Environment | URL                   | Git branch | Notes                |
+| ----------- | --------------------- | ---------- | -------------------- |
+| Local       | http://localhost:5173 | any        |                      |
+| PR preview  | per-PR Vercel URL     | PRs        | needs Vercel secrets |
 
 ## Decision log
 
-| Date | Decision | Why  |
-| ---- | -------- | ---- |
-| TODO | TODO     | TODO |
+- **Pure SPA, no prerender/SSG.** Per-route social previews would need a
+  build-time prerender; at Prototype stage the site ships site-wide OG meta in
+  `index.html` instead. Revisit if link previews per case study start to
+  matter.
+- **Bundle budgets (gzip, measured 2026-10-29):** initial JS 137.5 KB
+  (budget 180), gsap + ScrollTrigger 44.5 KB (lazy, homepage only),
+  ParticleField 239.6 KB (lazy, idle-loaded, never render-blocking).
+- **`@repo/ui` removed from `web`'s dependencies** — the portfolio doesn't
+  import it. The package remains in the repo for future shared components.

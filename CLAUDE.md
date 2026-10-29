@@ -256,10 +256,12 @@ in that form:
 
 ## Repo map
 
-- `apps/web`: React SPA built with Vite and styled with Tailwind CSS 4. The
-  only app with code. Its landing page (`src/landing`) is a quick guide to
-  this template and repeats the README's setup, scripts and workflow: when you
-  change one, change the other.
+- `apps/web`: the portfolio — a React SPA built with Vite and styled with
+  Tailwind CSS 4. The only app with code. Structure: `src/pages` (routes),
+  `src/sections` (homepage), `src/components`, `src/content` (all copy and
+  project data), `src/three` (hero scene), `src/lib` (theme, motion, meta).
+  The visual spec is `design.md` at the repo root; keep it and
+  `docs/04-design-brief.md` in step when tokens change.
 - `apps/server`: placeholder, one comment line and no `package.json`, so not a
   workspace package. Don't build a server until something needs one (holding a
   secret, webhooks, HttpOnly-cookie auth); try RLS, Postgres functions and
@@ -292,12 +294,12 @@ pnpm format                                      # whole repo; not inside a feat
   the same pattern. A change in `packages/ui` can break `web`, so check both.
 - Tailwind CSS 4 is configured in CSS, with no `tailwind.config.js`.
   `apps/web/src/style.css` imports it, and design tokens go in an `@theme`
-  block there (see `docs/04-design-brief.md`); no one-off colours, arbitrary
-  values like `bg-[#123456]` included. Tailwind skips `node_modules`, where
-  `@repo/ui` is linked, so that file has `@source '../../../packages/ui'`.
-  An app that uses `@repo/ui` without that line renders its components
-  unstyled. `@repo/ui` components use the same tokens (`bg-surface`,
-  `text-primary`), so an app that uses them defines the same token names.
+  block there (see `docs/04-design-brief.md` and `design.md`); no one-off
+  colours, arbitrary values like `bg-[#123456]` included — the stock palette
+  is wiped on purpose (`--color-*: initial`). Tailwind skips `node_modules`,
+  where `@repo/ui` is linked; `web` doesn't import `@repo/ui` today, so its
+  `@source '../../../packages/ui'` line was removed. Any app that adopts
+  `@repo/ui` needs that line back, or its components render unstyled.
 - ESLint 10 with flat config. Each package's `eslint.config.js` re-exports
   `@repo/eslint-config/react` (React code: react-hooks rules, browser globals)
   or `@repo/eslint-config` (Node and tooling code; the root `eslint.config.mjs`

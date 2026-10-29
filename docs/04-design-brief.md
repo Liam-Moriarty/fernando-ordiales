@@ -1,90 +1,72 @@
 # 04 · Design brief
 
-**Status:** Not started · **Owner:** TODO · **Approved by:** TODO · **Date:**
-TODO
+**Status:** Draft · **Owner:** Fernando Ordiales · **Approved by:** visual
+spec approved by Fernando in chat · **Date:** 2026-10-29
 
-How every screen should look, so the tenth screen is as on-brand as the first.
+**The source of truth is [`design.md`](../design.md)** — concept ("the
+trace"), both theme palettes with computed contrast ratios, type scale,
+spacing, layout wireframes, radii, shadows, the full motion spec, component
+states, voice rules and the don'ts list. This file records where those
+decisions live in code.
 
 ## Brand
 
-- **Logo files:** TODO: where they live (e.g. `apps/web/public/`) and which
-  version goes on light and dark backgrounds
-- **Logo rules:** TODO: minimum size, clear space, what not to do
-- **Design files:** TODO: link to Figma or similar, or "none"
-- **Voice:** TODO: formal or casual, and how error messages are worded
+- **Logo:** none; the wordmark is the name set in Instrument Sans. Favicon is
+  a trace node (`apps/web/public/favicon.svg`).
+- **Voice:** first person, plain verbs, specific over impressive. Banned
+  words and CTA wording: `design.md` §12.
 
 ## Colours
 
-Defined once in the `@theme` block of `apps/web/src/style.css`. Tailwind turns
-each token into a CSS variable and a set of utilities: `--color-primary` gives
-`bg-primary`, `text-primary` and `border-primary`. Use those everywhere. No
-one-off colour values in components, Tailwind arbitrary values like
-`bg-[#1d4ed8]` included.
+Defined once in the `@theme inline` block of `apps/web/src/style.css`. Light
+values sit on `:root`, dark on `[data-theme='dark']`; an inline script in
+`index.html` sets the attribute before first paint. Tailwind's stock palette
+is wiped (`--color-*: initial`), so only these tokens exist:
 
-The template ships blueprint values for these tokens, used by its landing page
-and the sample `@repo/ui` components. They're placeholders: replace them with
-the values below. It also defines `--color-muted` for secondary text and
-`--color-grid` for the landing page's graph paper.
+| Token                  | Light          | Dark           | Used for                         |
+| ---------------------- | -------------- | -------------- | -------------------------------- |
+| `--color-background`   | `#fbfbfd`      | `#131316`      | Page background                  |
+| `--color-surface`      | `#f4f4f7`      | `#1a1a1e`      | Panels, code, screenshot frames  |
+| `--color-elevated`     | `#ffffff`      | `#232329`      | Modals, menus                    |
+| `--color-text`         | `#1c1c21`      | `#e9e9ee`      | Headings and body                |
+| `--color-muted`        | `#595964`      | `#a3a3af`      | Secondary text, meta             |
+| `--color-border`       | `#e4e4eb`      | `#2e2e36`      | Hairlines, dividers              |
+| `--color-accent`       | `#6650a8`      | `#b4a5e8`      | Trace, links, focus, primary CTA |
+| `--color-accent-hover` | mix 88% + text | mix 88% + text | Primary button hover             |
+| `--color-accent-quiet` | `#ece8f7`      | `#2e2a42`      | Trace track, selection, tints    |
+| `--color-error`        | `#c62a2f`      | `#e5484d`      | Errors only                      |
 
-| Token                | Value | Used for                    |
-| -------------------- | ----- | --------------------------- |
-| `--color-primary`    | TODO  | Main buttons, links         |
-| `--color-text`       | TODO  | Body text                   |
-| `--color-background` | TODO  | Page background             |
-| `--color-surface`    | TODO  | Cards, panels               |
-| `--color-border`     | TODO  | Dividers, input outlines    |
-| `--color-error`      | TODO  | Errors, destructive actions |
-| `--color-success`    | TODO  | Confirmations               |
-
-Dark mode: TODO: yes or no. If yes, add a dark value column. Tailwind's `dark:`
-variant follows the operating system setting.
+Every pair passes WCAG AA (most AAA); the computed ratios are in `design.md`
+§2. No success green: a quiet site confirms with the accent.
 
 ## Typography
 
-Fonts and sizes go in the same `@theme` block (`--font-*`, `--text-*`). The
-placeholder fonts are Saira (`--font-display`) and Atkinson Hyperlegible Next
-and Mono (`--font-sans`, `--font-mono`), loaded from Google Fonts in
-`apps/web/index.html`.
+| Use                | Font                      | Size and weight                                                  |
+| ------------------ | ------------------------- | ---------------------------------------------------------------- |
+| Headings & body    | Instrument Sans Variable  | type scale tokens `--text-display` … `--text-h4`, body 1rem/1.65 |
+| Code, meta, labels | Spline Sans Mono Variable | `--text-caption` 13px, code 14px                                 |
 
-| Use                 | Font | Size and weight |
-| ------------------- | ---- | --------------- |
-| Headings            | TODO | TODO            |
-| Body                | TODO | TODO            |
-| Labels, small print | TODO | TODO            |
+Fonts are self-hosted Fontsource packages imported in `main.tsx`. Full scale
+with clamp values: `design.md` §4. Body max line length 68ch.
 
 ## Components
 
-How each element looks in every state. Shared components live in
-`packages/ui` and are styled with Tailwind classes.
-
-| Element                         | Looks like | States to cover                 |
-| ------------------------------- | ---------- | ------------------------------- |
-| Primary button                  | TODO       | hover, focus, disabled, loading |
-| Secondary button                | TODO       | hover, focus, disabled          |
-| Text input                      | TODO       | focus, error, disabled          |
-| Link                            | TODO       | hover, focus                    |
-| Headings                        | TODO       |                                 |
-| Card or panel                   | TODO       |                                 |
-| Messages (error, success, info) | TODO       |                                 |
+Shared primitives live in `apps/web/src/components/` (Button/ButtonLink
+variants, ThemeToggle, CopyEmailButton, LayerIndicator, Trace, PageTransition,
+ArchDiagram). States per `design.md` §10; no component uses a color outside
+the tokens above.
 
 ## Layout
 
-Tailwind's defaults apply unless this section changes them: breakpoints at
-640, 768, 1024, 1280 and 1536px (`sm` to `2xl`), and spacing in steps of 4px
-(`p-1` is 4px). Changes go in `@theme`.
-
-- **Breakpoints:** TODO: e.g. phone up to 640px, tablet up to 1024px, desktop
-  above
-- **Maximum content width:** TODO
-- **Spacing scale:** TODO: e.g. 4, 8, 12, 16, 24, 32, 48px
+- Container `--container-page` = 70rem (1120px); Tailwind default breakpoints.
+- Everything left-aligned; the homepage reserves a left rail for the trace
+  (`lg:pl-16` on content).
+- Section padding-y: 64 / 96 / 128 px (mobile / tablet / desktop).
 
 ## Accessibility
 
-The minimum for every screen:
-
-- Text contrast meets WCAG AA (4.5:1 for body text).
-- Everything clickable can be reached and used with a keyboard, with a visible
-  focus style.
-- Images that carry meaning have alt text; every form field has a label.
-
-Anything beyond this, e.g. a legal requirement: TODO
+- All text pairs AA or better (table above).
+- Global 2px accent `:focus-visible` ring, skip link, semantic landmarks,
+  one `h1` per page.
+- `prefers-reduced-motion` honored everywhere (`design.md` §9); the Three.js
+  canvas is `aria-hidden` with a static SVG fallback.

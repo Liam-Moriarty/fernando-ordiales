@@ -1,63 +1,46 @@
 # 03 · App flow
 
-**Status:** Not started · **Owner:** TODO · **Approved by:** TODO · **Date:**
-TODO
+**Status:** Draft · **Owner:** Fernando Ordiales · **Approved by:** pending ·
+**Date:** 2026-10-29
 
-What happens when someone clicks: every screen, where each action leads, and
-where people land when something goes wrong.
+What happens when someone clicks. Wireframes live in `design.md` §6.
 
 ## Screens
 
-"Who can see it" uses the roles from [01](01-product-requirements.md). Hiding a
-screen in the UI isn't protection; the access rules in
-[05](05-database-schema.md) enforce it on the server.
-
-| Screen | URL  | Who can see it | What it's for |
-| ------ | ---- | -------------- | ------------- |
-| TODO   | `/`  | Everyone       | TODO          |
-| TODO   | TODO | TODO           | TODO          |
+| Screen     | URL           | Who can see it | What it's for                                          |
+| ---------- | ------------- | -------------- | ------------------------------------------------------ |
+| Home       | `/`           | Everyone       | Hero, selected work, capabilities, experience, contact |
+| Case study | `/work/:slug` | Everyone       | One project: problem, build, decisions, results        |
+| About      | `/about`      | Everyone       | Short bio, education, resume download                  |
+| Not found  | anything else | Everyone       | Plain message + link home                              |
 
 ## Flows
 
-One block per journey, e.g. sign up, book an appointment, pay an invoice.
+### Flow 1 · Contact by email (the primary goal)
 
-### Flow 1 · TODO name
+- **Who:** Visitor
+- **Starts at:** anywhere — the nav's "Email me" is on every screen
+- **Steps:** click any "Email me" (nav, hero, contact) → mail client opens
+  with `mailto:`; or click "Copy email" → button confirms "Copied" for 1.6s.
+- **On failure:** clipboard unavailable or denied → the button stays "Copy
+  email", nothing breaks; the address is visible as text and mailto works.
 
-- **Who:** TODO: role
-- **Starts at:** TODO: screen
-- **Steps:**
-  1. TODO
-- **On success:** TODO: where they land and what they see
-- **On failure:** TODO: e.g. invalid input, payment declined, network down
-- **Not signed in, or not allowed:** TODO
+### Flow 2 · Read a case study
 
-Optional diagram (GitHub renders Mermaid):
+- **Who:** Visitor
+- **Steps:** home → "Selected work" row (whole row is the link) →
+  `/work/:slug` → "← Work" returns to `/#work`; "Next: <project>" cycles
+  through the three projects.
+- **Unknown slug:** the not-found page with a link home (no crash, no blank).
 
-```mermaid
-flowchart LR
-  Start[TODO start screen] --> Action[TODO action]
-  Action -->|success| Done[TODO]
-  Action -->|error| Error[TODO]
-```
+### Flow 3 · Theme
 
-<!-- Copy the Flow 1 block for each journey. -->
+- **Steps:** first visit follows the system theme with no flash (inline head
+  script); the toggle flips it and persists in `localStorage`; blocked
+  storage falls back to the system preference for the visit.
 
-## When things go wrong
+### Flow 4 · Motion fallbacks
 
-Where people land anywhere in the app. Every row needs an answer before
-building starts.
-
-| Situation                         | What the user sees | Where they can go next |
-| --------------------------------- | ------------------ | ---------------------- |
-| Page doesn't exist (404)          | TODO               | TODO                   |
-| Not signed in                     | TODO               | TODO                   |
-| Signed in but not allowed         | TODO               | TODO                   |
-| Something failed (server/network) | TODO               | TODO                   |
-| Nothing to show yet (empty list)  | TODO               | TODO                   |
-| Still loading                     | TODO               | n/a                    |
-
-## Emails and notifications
-
-| Trigger | Who gets it | What it says |
-| ------- | ----------- | ------------ |
-| TODO    | TODO        | TODO         |
+- `prefers-reduced-motion`, no WebGL, or low device memory → static SVG field
+  instead of the Three.js canvas, trace rendered fully drawn, transitions
+  become plain fades. Nothing requires motion to be usable.
