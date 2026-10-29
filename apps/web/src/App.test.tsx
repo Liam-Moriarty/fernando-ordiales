@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { AppRoutes } from './App';
 
@@ -20,7 +20,8 @@ describe('AppRoutes', () => {
 
   it('keeps the email action one click away in the nav', () => {
     renderAt('/');
-    const email = screen.getByRole('link', { name: 'Email me' });
+    const nav = screen.getByRole('navigation', { name: 'Main' });
+    const email = within(nav).getByRole('link', { name: 'Email me' });
     expect(email.getAttribute('href')).toBe(
       'mailto:fernando.ordiales23@gmail.com'
     );

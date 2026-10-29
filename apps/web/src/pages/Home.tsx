@@ -1,5 +1,10 @@
 import { PageTransition } from '../components/PageTransition';
 import { usePageMeta } from '../lib/meta';
+import { Capabilities } from '../sections/Capabilities';
+import { Contact } from '../sections/Contact';
+import { Experience } from '../sections/Experience';
+import { Hero } from '../sections/Hero';
+import { SelectedWork } from '../sections/SelectedWork';
 
 export const Home = () => {
   usePageMeta(
@@ -9,11 +14,16 @@ export const Home = () => {
 
   return (
     <PageTransition>
-      <section className="mx-auto max-w-page px-5 py-24 sm:px-8 lg:px-12">
-        <h1 className="max-w-[18ch] text-display">
-          I take AI products from prompt to production.
-        </h1>
-      </section>
+      <div className="relative mx-auto max-w-page px-5 sm:px-8 lg:px-12">
+        {/* Task 6 mounts the scroll-drawn trace in this rail. */}
+        <div className="lg:pl-16">
+          <Hero />
+          <SelectedWork />
+          <Capabilities />
+          <Experience />
+          <Contact />
+        </div>
+      </div>
     </PageTransition>
   );
 };
