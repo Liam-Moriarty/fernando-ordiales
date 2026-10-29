@@ -145,6 +145,8 @@ Whitespace is the main luxury signal; when in doubt, take the larger step.
 - Desktop: the trace occupies a 48px rail at the container's left edge;
   content starts on column 2 of 12. Mobile: the trace moves to the far-left
   viewport edge (12px in) and content uses the full container.
+- The contact email renders at h2 size, not display (changed 2026-10-29 at
+  Fernando's request — display was overpowering).
 - Text content (body copy, case study prose) is capped at 68ch ≈ 8 columns;
   the right side of wide sections is deliberately left empty except where a
   project's layer diagram sits.
@@ -363,8 +365,10 @@ All states = default / hover / active / focus-visible / disabled.
 - **Inputs (if a contact form ever exists — none planned):** surface bg,
   border, 4px radius; focus: accent border + ring; error: error border +
   caption message below. Documented so a future addition doesn't improvise.
-- **Footer:** hairline top border; GitHub, LinkedIn, resume PDF, email again,
-  location + timezone in mono caption. No sitemap theater.
+- **Footer:** hairline top border; social icon buttons (GitHub, LinkedIn,
+  Instagram, Facebook — Phosphor logos in 32px bordered chips, accent border
+  on hover, per the old portfolio), resume PDF, email again, location +
+  timezone in mono caption. No sitemap theater.
 
 ## 11. Iconography & imagery
 

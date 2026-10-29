@@ -52,8 +52,13 @@ describe('profile', () => {
     expect(profile.email).toBe('fernando.ordiales23@gmail.com');
   });
 
-  it('links the real resume PDF and GitHub account', () => {
+  it('links the real resume PDF and social profiles', () => {
     expect(profile.links.resume).toBe('/docs/Ordiales-Fernando-Resume.pdf');
     expect(profile.links.github).toBe('https://github.com/Liam-Moriarty');
+    expect(profile.links.linkedin).toBe(
+      'https://www.linkedin.com/in/fernando-jose-ordiales-0164802b7/'
+    );
+    expect(profile.links.instagram).toContain('instagram.com');
+    expect(profile.links.facebook).toContain('facebook.com');
   });
 });

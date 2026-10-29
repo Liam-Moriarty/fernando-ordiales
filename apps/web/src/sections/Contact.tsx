@@ -14,7 +14,7 @@ export const Contact = () => (
     </p>
     <a
       href={`mailto:${profile.email}`}
-      className="mt-10 block max-w-full break-all text-h1 decoration-accent underline-offset-8 hover:underline"
+      className="mt-8 block max-w-full break-all text-h2 decoration-accent underline-offset-8 hover:underline"
     >
       {profile.email}
     </a>

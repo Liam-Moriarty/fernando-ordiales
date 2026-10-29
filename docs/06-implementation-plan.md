@@ -52,7 +52,6 @@ console errors). Bundle sizes are logged in
 
 ## Still open (needs Fernando)
 
-- [ ] LinkedIn URL in `apps/web/src/content/profile.ts` (hidden until set).
 - [ ] Live/repo links for the three MERN projects and metrics where
       claimable (`links` in `projects.ts`).
 - [ ] Confirm employer/client approval for Switchboard and Flinki imagery

@@ -11,8 +11,9 @@ export const profile = {
   availability: 'Available for full-time and freelance',
   links: {
     github: 'https://github.com/Liam-Moriarty',
-    // TODO(Fernando): add your LinkedIn URL. Empty links are not rendered.
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/fernando-jose-ordiales-0164802b7/',
+    instagram: 'https://www.instagram.com/panic.at_rebisco/',
+    facebook: 'https://www.facebook.com/Izumi456',
     resume: '/docs/Ordiales-Fernando-Resume.pdf',
   },
 } as const;

@@ -14,7 +14,6 @@ project stage.
 
 ## Finishing the site (content still owned by Fernando)
 
-- LinkedIn URL in `apps/web/src/content/profile.ts` (hidden until set).
 - Images live one folder per project under `public/projects/<slug>/`; drop
   raw originals in `apps/web/public/project-photos/` (git-ignored) and serve
   resized copies.
