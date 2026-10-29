@@ -49,20 +49,22 @@ export const EmailButton = ({ size = 'md' }: { size?: 'md' | 'sm' }) => {
   const send = async () => {
     setState('sending');
     try {
-      const response = await fetch(SEND_ENDPOINT, {
+      // FormData keeps this a "simple" request: a JSON body forces a CORS
+      // preflight that FormSubmit answers without CORS headers, which makes
+      // the browser block the send entirely.
+      const form = new FormData();
+      form.set('_subject', subject || 'Portfolio contact');
+      form.set('message', body);
+      form.set('_captcha', 'false');
+      form.set('_template', 'box');
+      // no-cors because FormSubmit's responses carry no CORS headers: the
+      // response is opaque, so a resolved fetch means the relay took the
+      // message and a rejected one means it was unreachable.
+      await fetch(SEND_ENDPOINT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          _subject: subject || 'Portfolio contact',
-          message: body,
-          _captcha: 'false',
-          _template: 'box',
-        }),
+        mode: 'no-cors',
+        body: form,
       });
-      if (!response.ok) throw new Error(`relay answered ${response.status}`);
       setState('sent');
       setSubject('');
       setBody('');

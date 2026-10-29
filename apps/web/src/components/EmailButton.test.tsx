@@ -40,15 +40,18 @@ describe('EmailButton', () => {
     await user.click(screen.getByRole('button', { name: 'Send' }));
 
     await waitFor(() => expect(screen.getByText(/sent/i)).not.toBeNull());
+    // no-cors: FormSubmit omits CORS headers, so the response is opaque —
+    // a resolved fetch means delivered, a rejected one means unreachable.
     expect(fetchMock).toHaveBeenCalledWith(
       SEND_ENDPOINT,
-      expect.objectContaining({ method: 'POST' })
+      expect.objectContaining({ method: 'POST', mode: 'no-cors' })
     );
-    const payload = JSON.parse(
-      (fetchMock.mock.calls[0]?.[1] as { body: string }).body
-    );
-    expect(payload._subject).toBe('Job offer');
-    expect(payload.message).toBe('Hello Fernando');
+    // FormData, not JSON: a JSON body forces a CORS preflight that
+    // FormSubmit answers without CORS headers, so the browser blocks it.
+    const payload = (fetchMock.mock.calls[0]?.[1] as { body: FormData }).body;
+    expect(payload).toBeInstanceOf(FormData);
+    expect(payload.get('_subject')).toBe('Job offer');
+    expect(payload.get('message')).toBe('Hello Fernando');
   });
 
   it('disables Send until there is a message', async () => {

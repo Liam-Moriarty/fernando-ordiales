@@ -413,15 +413,10 @@ All states = default / hover / active / focus-visible / disabled.
   (PDF)** (opens the PDF in a new tab), **View work**. A copied email
   confirms with **Copied**.
 - Meta text (dates, stacks, timezone) is mono, lowercase where natural.
-- Hero headline options (one sentence, no highlighted word):
-  1. **"I take AI products from prompt to production."**
-  2. "I build AI products end to end — the model wiring, the interface, and
-     the infrastructure they run on."
-  3. "AI features, the APIs behind them, and the infrastructure underneath —
-     built by one engineer."
-- Supporting line: "AI engineer at Hytel. Recently: an AI project-management
-  copilot with a 29-tool agent, and a Vertex AI layer for a sports app used
-  by athletes." (adjust to taste)
+- Hero headline (final, Fernando's wording 2026-10-29): **"I take AI
+  products from idea to production"** — no trailing period.
+- Supporting line (final, Fernando's wording): "AI Software Engineer. I
+  build AI-powered products on Google Cloud."
 - Availability line (contact + footer): "Available for full-time and
   freelance · Manila, PH · GMT+8" — **TODO: Fernando confirms wording.**
 

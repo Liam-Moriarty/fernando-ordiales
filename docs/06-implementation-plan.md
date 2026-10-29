@@ -52,7 +52,13 @@ console errors). Bundle sizes are logged in
   address is already public on the page) straight to Fernando's inbox, with
   a prefilled mailto as the in-dialog fallback when the relay is
   unreachable. Chosen over mailto alone after it dead-ended on machines
-  with no configured mail app.
+  with no configured mail app. Sends as FormData in `no-cors` mode: a JSON
+  body hit a CORS preflight FormSubmit can't answer, and even plain
+  responses carry no CORS headers — the false "Couldn't send" came from the
+  browser blocking the response read on messages that had been delivered.
+- Hero copy finalized: headline "I take AI products from idea to
+  production" (no period), support "AI Software Engineer. I build
+  AI-powered products on Google Cloud." OG image regenerated to match.
 - The theme toggle crossfades through the View Transitions API (CSS
   transition fallback hardened with !important; Three.js palette lerped in
   useFrame) after Fernando's recording showed the nav, body and canvas
@@ -68,12 +74,14 @@ console errors). Bundle sizes are logged in
 
 ## Still open (needs Fernando)
 
-- [ ] Send one test message from the site, then click the activation link
-      FormSubmit emails to fernando.ordiales23@gmail.com (one time; delivery
-      starts after it). FormSubmit was down (HTTP 521) during the build's
-      live check, so also verify a send goes through once it's back; if the
-      service proves flaky, a Web3Forms access key (web3forms.com, free) is
-      a one-line swap in `EmailButton.tsx`.
+- [ ] **Consider swapping the email relay to Web3Forms.** FormSubmit's
+      responses carry no CORS headers, so the form sends in `no-cors` mode
+      and cannot see the relay's answer — and the service returned HTTP 521
+      repeatedly during live checks (2026-10-29 evening), meaning a "Sent"
+      can silently go undelivered while it's down. Web3Forms
+      (web3forms.com, free) has a proper CORS API with readable success:
+      get an access key with your email and it's a one-line endpoint/payload
+      swap in `EmailButton.tsx`. Until then, test the form occasionally.
 - [ ] Confirm the Todo-List repo really is the task-monitoring project; add
       a repo for the sales dashboard and live URLs once deployed (`links` in
       `projects.ts`).

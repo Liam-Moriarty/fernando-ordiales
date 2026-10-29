@@ -15,7 +15,7 @@ describe('AppRoutes', () => {
   it('renders the hero headline on the homepage', () => {
     renderAt('/');
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
-      'I take AI products from prompt to production.'
+      'I take AI products from idea to production'
     );
   });
 

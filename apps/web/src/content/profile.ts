@@ -2,9 +2,8 @@ export const profile = {
   name: 'Fernando Jose Ordiales',
   shortName: 'Fernando Ordiales',
   role: 'AI Engineer',
-  headline: 'I take AI products from prompt to production.',
-  support:
-    'AI engineer at Hytel. Recently: an AI project-management copilot with a 29-tool agent, and the AI layer of a sports app built on Vertex AI.',
+  headline: 'I take AI products from idea to production',
+  support: 'AI Software Engineer. I build AI-powered products on Google Cloud.',
   email: 'fernando.ordiales23@gmail.com',
   location: 'Manila, PH',
   timezone: 'GMT+8',
