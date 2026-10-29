@@ -31,10 +31,12 @@ console errors). Bundle sizes are logged in
 
 - [ ] GitHub and LinkedIn URLs in `apps/web/src/content/profile.ts` (empty
       links are hidden until filled).
-- [ ] Real screenshots over the placeholders in `apps/web/public/projects/`
-      (same filenames, or edit `images[].src` in
-      `apps/web/src/content/projects.ts`). Check employer/client approval
-      for Switchboard and Flinki imagery before publishing.
+- [ ] Real screenshots for Switchboard and FGP over the placeholders in
+      `apps/web/public/projects/` (same filenames, or edit `images[].src` in
+      `apps/web/src/content/projects.ts`). Flinki's eight screenshots are in
+      (from `project-photos/`, resized to `/projects/flinki-N.jpg`; the raw
+      drops folder is git-ignored). Check employer/client approval for
+      Switchboard and Flinki imagery before publishing.
 - [ ] The real resume at `apps/web/public/resume.pdf`.
 - [ ] Project links/metrics in `projects.ts` (`links.live`, `links.repo`).
 - [ ] Production domain: replace `REPLACE-WITH-DOMAIN` in

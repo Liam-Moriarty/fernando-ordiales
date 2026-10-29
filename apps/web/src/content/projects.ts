@@ -36,7 +36,7 @@ export type Project = {
   decisions: { what: string; why: string }[];
   results: string[];
   links: { live?: string; repo?: string };
-  images: { src: string; alt: string }[];
+  images: { src: string; alt: string; width: number; height: number }[];
 };
 
 export const projects: Project[] = [
@@ -79,6 +79,8 @@ export const projects: Project[] = [
       {
         src: '/projects/switchboard-1.svg',
         alt: 'Placeholder for a Switchboard screenshot: the global AI chat planning a sprint.',
+        width: 1200,
+        height: 760,
       },
     ],
   },
@@ -119,8 +121,52 @@ export const projects: Project[] = [
     links: {},
     images: [
       {
-        src: '/projects/flinki-1.svg',
-        alt: 'Placeholder for a Flinki screenshot: an achievement post with a verified race result.',
+        src: '/projects/flinki-1.jpg',
+        alt: "Fernando's verified Flinki profile with the achievements list and an Add Achievement action.",
+        width: 860,
+        height: 1864,
+      },
+      {
+        src: '/projects/flinki-6.jpg',
+        alt: 'Flinki recognising a half marathon from a Garmin activity and offering to add it to the profile.',
+        width: 860,
+        height: 1864,
+      },
+      {
+        src: '/projects/flinki-8.jpg',
+        alt: 'Live tracking during a run: the route drawing in real time with distance and duration.',
+        width: 860,
+        height: 1864,
+      },
+      {
+        src: '/projects/flinki-3.jpg',
+        alt: 'A verified hike post — Mt Apo foothills, 14.8 km with elevation — the route drawn over satellite imagery.',
+        width: 860,
+        height: 1864,
+      },
+      {
+        src: '/projects/flinki-2.jpg',
+        alt: 'The feed: verified walk and Garmin-tracked ride posts, each with a route map and stats.',
+        width: 860,
+        height: 1864,
+      },
+      {
+        src: '/projects/flinki-7.jpg',
+        alt: 'Activity detail with a 3D satellite flythrough of a running circuit.',
+        width: 860,
+        height: 1864,
+      },
+      {
+        src: '/projects/flinki-4.jpg',
+        alt: 'The map tab: achievement pins clustered on a 3D globe over Southeast Asia.',
+        width: 860,
+        height: 1864,
+      },
+      {
+        src: '/projects/flinki-5.jpg',
+        alt: 'The map tab zoomed to the Philippines, achievements clustered by city.',
+        width: 860,
+        height: 1864,
       },
     ],
   },
@@ -158,6 +204,8 @@ export const projects: Project[] = [
       {
         src: '/projects/fgp-1.svg',
         alt: 'Placeholder for a screenshot of the migrated FGP site.',
+        width: 1200,
+        height: 760,
       },
     ],
   },

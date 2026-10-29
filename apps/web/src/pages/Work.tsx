@@ -122,13 +122,26 @@ export const Work = () => {
           </aside>
         </div>
 
-        <div className="mt-14 space-y-6">
+        <div
+          className={`mt-14 ${
+            project.images.length > 1
+              ? 'grid grid-cols-2 gap-4 lg:grid-cols-4'
+              : 'space-y-6'
+          }`}
+        >
           {project.images.map((image) => (
             <figure
               key={image.src}
               className="overflow-hidden rounded-lg border border-border bg-surface"
             >
-              <img src={image.src} alt={image.alt} className="block w-full" />
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                className="block h-auto w-full"
+              />
             </figure>
           ))}
         </div>

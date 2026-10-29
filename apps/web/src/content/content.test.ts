@@ -26,6 +26,9 @@ describe('projects', () => {
       for (const image of project.images) {
         expect(image.src.startsWith('/projects/')).toBe(true);
         expect(image.alt.length).toBeGreaterThan(0);
+        // Dimensions reserve layout space so late images can't shift the page.
+        expect(image.width).toBeGreaterThan(0);
+        expect(image.height).toBeGreaterThan(0);
       }
     }
   });

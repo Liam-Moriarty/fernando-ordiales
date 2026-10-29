@@ -16,8 +16,11 @@ project stage.
 
 - GitHub/LinkedIn URLs in `apps/web/src/content/profile.ts` (empty links stay
   hidden).
-- Real screenshots over `apps/web/public/projects/*.svg` (same filename, or
-  change `images[].src` in `apps/web/src/content/projects.ts`).
+- Real screenshots for Switchboard and FGP over
+  `apps/web/public/projects/*.svg` (same filename, or change `images[].src`
+  in `apps/web/src/content/projects.ts`). Flinki's are already wired in;
+  drop raw originals in `apps/web/public/project-photos/` (git-ignored) and
+  serve resized copies from `public/projects/`.
 - The real resume at `apps/web/public/resume.pdf`.
 - Project links in `projects.ts`; production domain in `public/sitemap.xml`,
   `public/robots.txt` and the `og:image` tag in `apps/web/index.html`.

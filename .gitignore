@@ -9,3 +9,7 @@ dist-ssr
 .cache
 server/dist
 public/dist
+
+# Raw screenshot drops (originals); the site serves resized copies from
+# apps/web/public/projects/ instead.
+apps/web/public/project-photos/
