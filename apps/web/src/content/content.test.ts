@@ -20,17 +20,23 @@ describe('projects', () => {
     }
   });
 
-  it('ships at least one described image per project', () => {
+  it('ships at least one described image per project, in its own folder', () => {
     for (const project of projects) {
       expect(project.images.length).toBeGreaterThan(0);
       for (const image of project.images) {
-        expect(image.src.startsWith('/projects/')).toBe(true);
+        // Every project keeps its images in /projects/<slug>/.
+        expect(image.src.startsWith(`/projects/${project.slug}/`)).toBe(true);
         expect(image.alt.length).toBeGreaterThan(0);
         // Dimensions reserve layout space so late images can't shift the page.
         expect(image.width).toBeGreaterThan(0);
         expect(image.height).toBeGreaterThan(0);
       }
     }
+  });
+
+  it('features exactly the three flagship projects on the homepage', () => {
+    expect(projects.filter((project) => project.featured)).toHaveLength(3);
+    expect(projects.length).toBeGreaterThanOrEqual(7);
   });
 });
 
@@ -44,5 +50,10 @@ describe('experience', () => {
 describe('profile', () => {
   it('uses the personal email from the resume', () => {
     expect(profile.email).toBe('fernando.ordiales23@gmail.com');
+  });
+
+  it('links the real resume PDF and GitHub account', () => {
+    expect(profile.links.resume).toBe('/docs/Ordiales-Fernando-Resume.pdf');
+    expect(profile.links.github).toBe('https://github.com/Liam-Moriarty');
   });
 });

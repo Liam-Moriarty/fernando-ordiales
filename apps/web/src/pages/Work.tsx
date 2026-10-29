@@ -1,7 +1,10 @@
 import { Link, useParams } from 'react-router';
 import { ArrowLeftIcon } from '@phosphor-icons/react';
 import { ArchDiagram } from '../components/ArchDiagram';
+import { ButtonLink } from '../components/Button';
 import { PageTransition } from '../components/PageTransition';
+import { SwipeDeck } from '../components/SwipeDeck';
+import { Tag } from '../components/Tag';
 import { projects } from '../content/projects';
 import { usePageMeta } from '../lib/meta';
 import { NotFound } from './NotFound';
@@ -50,9 +53,27 @@ export const Work = () => {
           <h1 className="text-h1">{project.name}</h1>
           <p className="mt-4 max-w-[68ch] text-muted">{project.oneLiner}</p>
           <p className="mt-4 font-mono text-caption text-muted">
-            {project.meta.role} · {project.meta.stack.join(', ')} ·{' '}
-            {project.meta.year}
+            {project.meta.role} · {project.meta.year}
           </p>
+          <p className="mt-4 flex flex-wrap gap-2">
+            {project.meta.stack.map((tool) => (
+              <Tag key={tool}>{tool}</Tag>
+            ))}
+          </p>
+          {(project.links.live ?? project.links.repo) && (
+            <p className="mt-6 flex flex-wrap gap-3">
+              {project.links.live && (
+                <ButtonLink variant="primary" href={project.links.live}>
+                  Visit live site
+                </ButtonLink>
+              )}
+              {project.links.repo && (
+                <ButtonLink variant="secondary" href={project.links.repo}>
+                  Source code
+                </ButtonLink>
+              )}
+            </p>
+          )}
         </header>
 
         <div className="mt-4 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,320px)]">
@@ -89,29 +110,6 @@ export const Work = () => {
                 ))}
               </ul>
             </Section>
-
-            {(project.links.live ?? project.links.repo) && (
-              <Section title="Links">
-                <p className="mt-4 flex gap-5">
-                  {project.links.live && (
-                    <a
-                      href={project.links.live}
-                      className="text-accent underline decoration-accent-quiet underline-offset-4 hover:decoration-accent"
-                    >
-                      Live site
-                    </a>
-                  )}
-                  {project.links.repo && (
-                    <a
-                      href={project.links.repo}
-                      className="text-accent underline decoration-accent-quiet underline-offset-4 hover:decoration-accent"
-                    >
-                      Repository
-                    </a>
-                  )}
-                </p>
-              </Section>
-            )}
           </div>
 
           <aside className="lg:pt-12">
@@ -122,28 +120,26 @@ export const Work = () => {
           </aside>
         </div>
 
-        <div
-          className={`mt-14 ${
-            project.images.length > 1
-              ? 'grid grid-cols-2 gap-4 lg:grid-cols-4'
-              : 'space-y-6'
-          }`}
-        >
-          {project.images.map((image) => (
-            <figure
-              key={image.src}
-              className="overflow-hidden rounded-lg border border-border bg-surface"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                loading="lazy"
-                className="block h-auto w-full"
-              />
-            </figure>
-          ))}
+        <div className="mt-14">
+          {project.images.length > 1 ? (
+            <SwipeDeck images={project.images} />
+          ) : (
+            project.images.map((image) => (
+              <figure
+                key={image.src}
+                className="overflow-hidden rounded-lg border border-border bg-surface"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="lazy"
+                  className="block h-auto w-full"
+                />
+              </figure>
+            ))
+          )}
         </div>
 
         <p className="mt-16 border-t border-border pt-8 text-right">

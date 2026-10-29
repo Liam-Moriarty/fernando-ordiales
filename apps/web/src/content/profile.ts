@@ -10,10 +10,9 @@ export const profile = {
   timezone: 'GMT+8',
   availability: 'Available for full-time and freelance',
   links: {
-    // TODO(Fernando): add your GitHub and LinkedIn URLs. Empty links are not
-    // rendered, so the site is correct either way.
-    github: '',
+    github: 'https://github.com/Liam-Moriarty',
+    // TODO(Fernando): add your LinkedIn URL. Empty links are not rendered.
     linkedin: '',
-    resume: '/resume.pdf',
+    resume: '/docs/Ordiales-Fernando-Resume.pdf',
   },
 } as const;

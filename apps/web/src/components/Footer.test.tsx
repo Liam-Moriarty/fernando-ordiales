@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Footer } from './Footer';
 
 describe('Footer', () => {
-  it('links email and resume, and hides profile links that are not set', () => {
+  it('links email, resume and GitHub, hiding links that are not set', () => {
     render(<Footer />);
 
     expect(
@@ -11,9 +11,11 @@ describe('Footer', () => {
     ).toBe('mailto:fernando.ordiales23@gmail.com');
     expect(
       screen.getByRole('link', { name: 'Resume (PDF)' }).getAttribute('href')
-    ).toBe('/resume.pdf');
-    // github/linkedin are '' in profile until Fernando fills them in.
-    expect(screen.queryByRole('link', { name: 'GitHub' })).toBeNull();
+    ).toBe('/docs/Ordiales-Fernando-Resume.pdf');
+    expect(
+      screen.getByRole('link', { name: 'GitHub' }).getAttribute('href')
+    ).toBe('https://github.com/Liam-Moriarty');
+    // linkedin is '' in profile until Fernando fills it in.
     expect(screen.queryByRole('link', { name: 'LinkedIn' })).toBeNull();
   });
 });

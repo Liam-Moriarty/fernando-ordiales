@@ -16,7 +16,7 @@ describe('Hero', () => {
       screen
         .getByRole('link', { name: 'Download resume (PDF)' })
         .getAttribute('href')
-    ).toBe('/resume.pdf');
+    ).toBe('/docs/Ordiales-Fernando-Resume.pdf');
   });
 
   it('never translates under reduced motion', () => {

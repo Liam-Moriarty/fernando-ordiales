@@ -34,6 +34,22 @@ describe('Work', () => {
     ).not.toBeNull();
   });
 
+  it('shows live-site and source-code actions when a project has them', () => {
+    renderSlug('custom-playlist-website');
+    expect(
+      screen.getByRole('link', { name: 'Visit live site' }).getAttribute('href')
+    ).toBe('https://one-ok-rock.vercel.app');
+    expect(
+      screen.getByRole('link', { name: 'Source code' }).getAttribute('href')
+    ).toBe('https://github.com/Liam-Moriarty/OOR-Website');
+  });
+
+  it('renders the stack as tags and a swipeable gallery for multiple images', () => {
+    renderSlug('switchboard');
+    expect(screen.getByText('Vertex AI')).not.toBeNull();
+    expect(screen.getByRole('button', { name: 'Next image' })).not.toBeNull();
+  });
+
   it('cycles the next-project link from the last back to the first', () => {
     renderSlug(projects[projects.length - 1].slug);
     const next = screen.getByRole('link', {

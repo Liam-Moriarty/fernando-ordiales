@@ -2,6 +2,9 @@ import { Link } from 'react-router';
 import { LayerIndicator } from '../components/LayerIndicator';
 import { projects } from '../content/projects';
 
+const featured = projects.filter((project) => project.featured);
+const more = projects.filter((project) => !project.featured);
+
 export const SelectedWork = () => (
   <section
     id="work"
@@ -10,7 +13,7 @@ export const SelectedWork = () => (
   >
     <h2 className="text-h2">Selected work</h2>
     <ul className="mt-8 border-y border-border">
-      {projects.map((project) => (
+      {featured.map((project) => (
         <li
           key={project.slug}
           className="border-b border-border last:border-b-0"
@@ -33,5 +36,28 @@ export const SelectedWork = () => (
         </li>
       ))}
     </ul>
+    {more.length > 0 && (
+      <div className="mt-12">
+        <h3 className="text-h4 text-muted">More projects</h3>
+        <ul className="mt-4">
+          {more.map((project) => (
+            <li key={project.slug}>
+              <Link
+                to={`/work/${project.slug}`}
+                className="group grid gap-x-6 gap-y-1 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline"
+              >
+                <span className="decoration-accent underline-offset-4 group-hover:underline">
+                  {project.name}
+                </span>
+                <span className="font-mono text-caption text-muted">
+                  {project.meta.stack.slice(0, 3).join(', ')} ·{' '}
+                  {project.meta.year}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </section>
 );
