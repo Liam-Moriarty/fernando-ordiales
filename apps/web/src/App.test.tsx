@@ -19,12 +19,15 @@ describe('AppRoutes', () => {
     );
   });
 
-  it('keeps the email action one click away in the nav', () => {
+  it('keeps one email action on screen, in the identity card only', () => {
     renderAt('/');
     const nav = screen.getByRole('navigation', { name: 'Main' });
-    expect(
-      within(nav).getByRole('button', { name: 'Email me' })
-    ).not.toBeNull();
+    // Fernando trimmed the repetition: no Email me in the nav or hero CTA
+    // row — the card carries the hero's single email action.
+    expect(within(nav).queryByRole('button', { name: 'Email me' })).toBeNull();
+    expect(screen.getAllByRole('button', { name: 'Email me' })).toHaveLength(
+      2 // the identity card and the contact section
+    );
   });
 
   it('lands on the work section when returning from a case study', async () => {

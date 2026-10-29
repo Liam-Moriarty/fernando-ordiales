@@ -337,9 +337,10 @@ All states = default / hover / active / focus-visible / disabled.
 
 - **Nav:** sticky, background-blur-free — solid `--background` with bottom
   hairline that appears after 16px of scroll. Left: name as wordmark (body
-  size, weight 500). Center-left: Work, About. Right: theme toggle + primary
-  **Email me** button — the always-one-click contact action on every page and
-  scroll position. Mobile: identical, no hamburger (two links fit).
+  size, weight 500). Center-left: Work, About. Right: theme toggle. The nav's Email me button was removed 2026-10-29 at
+  Fernando's request (it repeated the card and contact CTAs); the email
+  action lives in the hero card, the contact section and the footer.
+  Mobile: identical, no hamburger (two links fit).
 - **Primary button (Email me):** filled `--accent`, text per contrast table
   §2; hover darkens/lightens accent 8%; disabled: surface bg, muted text.
 - **Secondary button (Resume, View work):** transparent, 1px `--border`,

@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { profile } from '../content/profile';
 import { ButtonLink } from '../components/Button';
-import { EmailButton } from '../components/EmailButton';
 import { ProfileCard } from '../components/ProfileCard';
 import { easeSettle } from '../lib/motion';
 
@@ -39,7 +38,6 @@ export const Hero = () => {
           {profile.support}
         </motion.p>
         <motion.div {...at(0.24, 0.4)} className="mt-9 flex flex-wrap gap-3">
-          <EmailButton />
           <ButtonLink
             variant="secondary"
             href={profile.links.resume}

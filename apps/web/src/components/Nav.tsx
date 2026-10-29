@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
-import { EmailButton } from './EmailButton';
 import { ThemeToggle } from './ThemeToggle';
 
 const navLink =
@@ -38,7 +37,6 @@ export const Nav = () => {
           </NavLink>
         </div>
         <ThemeToggle />
-        <EmailButton size="sm" />
       </nav>
     </header>
   );
