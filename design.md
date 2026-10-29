@@ -396,8 +396,10 @@ All states = default / hover / active / focus-visible / disabled.
   70% opacity so the wall stays calm, releasing the brand color only on
   hover, matching the old portfolio. Brand hexes live in the content data,
   not the token system; white-logo brands take no color and inherit text.
-- **Imagery:** product screenshots only — no stock, no 3D illustrations, no
-  abstract blobs. Screenshots sit in a `--surface` panel with hairline border,
+- **Imagery:** product screenshots, plus Fernando's studio portrait
+  (added 2026-10-29 at his request): a 56px round avatar above the hero
+  headline and the full portrait beside the About bio, hairline border, 8px
+  radius. Otherwise no stock, no 3D illustrations, no abstract blobs. Screenshots sit in a `--surface` panel with hairline border,
   8px radius, actual app chrome cropped unless it matters. Architecture
   diagrams are hand-authored SVGs using the same tokens (mono labels, hairline
   strokes, accent only on the data-flow arrows) so they re-theme with the

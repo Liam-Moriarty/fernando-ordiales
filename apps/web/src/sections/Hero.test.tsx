@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { profile } from '../content/profile';
 import { Hero } from './Hero';
 
 describe('Hero', () => {
@@ -9,11 +10,11 @@ describe('Hero', () => {
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
       'I take AI products from idea to production'
     );
-    expect(
-      screen.getByText(
-        'AI Software Engineer. I build AI-powered products on Google Cloud.'
-      )
-    ).not.toBeNull();
+    // The support copy is Fernando's to edit; assert it renders, not its text.
+    expect(screen.getByText(profile.support)).not.toBeNull();
+    expect(screen.getByAltText('Fernando Ordiales').getAttribute('src')).toBe(
+      '/portrait.jpg'
+    );
     expect(screen.getByRole('button', { name: 'Email me' })).not.toBeNull();
     const resume = screen.getByRole('link', { name: 'View resume (PDF)' });
     expect(resume.getAttribute('href')).toBe(

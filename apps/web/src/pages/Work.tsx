@@ -63,12 +63,22 @@ export const Work = () => {
           {(project.links.live ?? project.links.repo) && (
             <p className="mt-6 flex flex-wrap gap-3">
               {project.links.live && (
-                <ButtonLink variant="primary" href={project.links.live}>
+                <ButtonLink
+                  variant="primary"
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Visit live site
                 </ButtonLink>
               )}
               {project.links.repo && (
-                <ButtonLink variant="secondary" href={project.links.repo}>
+                <ButtonLink
+                  variant="secondary"
+                  href={project.links.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Source code
                 </ButtonLink>
               )}

@@ -34,14 +34,16 @@ describe('Work', () => {
     ).not.toBeNull();
   });
 
-  it('shows live-site and source-code actions when a project has them', () => {
+  it('shows live-site and source-code actions opening in a new tab', () => {
     renderSlug('custom-playlist-website');
-    expect(
-      screen.getByRole('link', { name: 'Visit live site' }).getAttribute('href')
-    ).toBe('https://one-ok-rock.vercel.app');
-    expect(
-      screen.getByRole('link', { name: 'Source code' }).getAttribute('href')
-    ).toBe('https://github.com/Liam-Moriarty/OOR-Website');
+    const live = screen.getByRole('link', { name: 'Visit live site' });
+    expect(live.getAttribute('href')).toBe('https://one-ok-rock.vercel.app');
+    expect(live.getAttribute('target')).toBe('_blank');
+    const repo = screen.getByRole('link', { name: 'Source code' });
+    expect(repo.getAttribute('href')).toBe(
+      'https://github.com/Liam-Moriarty/OOR-Website'
+    );
+    expect(repo.getAttribute('target')).toBe('_blank');
   });
 
   it('renders the stack as tags and a swipeable gallery for multiple images', () => {

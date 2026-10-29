@@ -57,8 +57,14 @@ console errors). Bundle sizes are logged in
   responses carry no CORS headers — the false "Couldn't send" came from the
   browser blocking the response read on messages that had been delivered.
 - Hero copy finalized: headline "I take AI products from idea to
-  production" (no period), support "AI Software Engineer. I build
-  AI-powered products on Google Cloud." OG image regenerated to match.
+  production" (no period); the support line is Fernando's own text in
+  `profile.ts` (tests assert it renders, not its wording). OG image
+  regenerated to match the headline.
+- Fernando's studio portrait (`public/pfp.jpg`, served resized as
+  `public/portrait.jpg`): round avatar above the hero headline, full
+  portrait beside the About bio. `pfp-2.jpg` stays unused in `public/`.
+- "Visit live site" / "Source code" buttons open in a new tab; About's
+  "Email me" now opens the compose modal like everywhere else.
 - The theme toggle crossfades through the View Transitions API (CSS
   transition fallback hardened with !important; Three.js palette lerped in
   useFrame) after Fernando's recording showed the nav, body and canvas

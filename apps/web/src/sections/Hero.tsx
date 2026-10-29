@@ -52,6 +52,14 @@ export const Hero = () => {
   return (
     <section className="grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,38%)] lg:py-32">
       <div>
+        <motion.img
+          {...at(0, 0.5)}
+          src="/portrait.jpg"
+          alt="Fernando Ordiales"
+          width={800}
+          height={1235}
+          className="mb-6 h-14 w-14 rounded-full border border-border object-cover object-top"
+        />
         <motion.h1
           {...at(0, 0.5)}
           data-trace-start
