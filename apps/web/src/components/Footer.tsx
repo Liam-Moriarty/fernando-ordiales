@@ -20,7 +20,12 @@ export const Footer = () => {
               {link.label}
             </a>
           ))}
-          <a href={profile.links.resume} className={footerLink}>
+          <a
+            href={profile.links.resume}
+            target="_blank"
+            rel="noreferrer"
+            className={footerLink}
+          >
             Resume (PDF)
           </a>
           <a href={`mailto:${profile.email}`} className={footerLink}>

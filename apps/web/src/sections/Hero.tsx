@@ -65,8 +65,13 @@ export const Hero = () => {
           <ButtonLink variant="primary" href={`mailto:${profile.email}`}>
             Email me
           </ButtonLink>
-          <ButtonLink variant="secondary" href={profile.links.resume}>
-            Download resume (PDF)
+          <ButtonLink
+            variant="secondary"
+            href={profile.links.resume}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View resume (PDF)
           </ButtonLink>
           <ButtonLink variant="ghost" href="#work">
             View work

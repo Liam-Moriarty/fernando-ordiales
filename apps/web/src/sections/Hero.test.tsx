@@ -12,11 +12,13 @@ describe('Hero', () => {
     expect(
       screen.getByRole('link', { name: 'Email me' }).getAttribute('href')
     ).toBe('mailto:fernando.ordiales23@gmail.com');
-    expect(
-      screen
-        .getByRole('link', { name: 'Download resume (PDF)' })
-        .getAttribute('href')
-    ).toBe('/docs/Ordiales-Fernando-Resume.pdf');
+    const resume = screen.getByRole('link', { name: 'View resume (PDF)' });
+    expect(resume.getAttribute('href')).toBe(
+      '/docs/Ordiales-Fernando-Resume.pdf'
+    );
+    // The resume opens in its own tab so the visit isn't interrupted.
+    expect(resume.getAttribute('target')).toBe('_blank');
+    expect(resume.getAttribute('rel')).toBe('noreferrer');
   });
 
   it('never translates under reduced motion', () => {

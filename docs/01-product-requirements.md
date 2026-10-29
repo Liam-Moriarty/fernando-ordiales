@@ -35,8 +35,9 @@ One anonymous role; there is no sign-in and no stored user data.
 - **Used by:** Visitor
 - **Priority:** Must
 - **Done when:**
-  - [x] Headline, support line, "Email me" (mailto), "Download resume (PDF)"
-        and "View work" render before any script-heavy visual loads.
+  - [x] Headline, support line, "Email me" (mailto), "View resume (PDF)"
+        (opens the PDF in a new tab) and "View work" render before any
+        script-heavy visual loads.
 
 ### F2 · Selected work rows with layer indicators
 

@@ -384,8 +384,9 @@ All states = default / hover / active / focus-visible / disabled.
   "a chat agent with 29 tools", never "cutting-edge AI solutions".
 - Banned words: passionate, craft, journey, digital experiences, wizard,
   ninja, guru, solutions, leverage (verb).
-- Buttons say what happens: **Email me**, **Copy email**, **Download resume
-  (PDF)**, **View work**. A copied email confirms with **Copied**.
+- Buttons say what happens: **Email me**, **Copy email**, **View resume
+  (PDF)** (opens the PDF in a new tab), **View work**. A copied email
+  confirms with **Copied**.
 - Meta text (dates, stacks, timezone) is mono, lowercase where natural.
 - Hero headline options (one sentence, no highlighted word):
   1. **"I take AI products from prompt to production."**

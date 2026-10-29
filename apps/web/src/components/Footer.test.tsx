@@ -9,9 +9,11 @@ describe('Footer', () => {
     expect(
       screen.getByRole('link', { name: 'Email' }).getAttribute('href')
     ).toBe('mailto:fernando.ordiales23@gmail.com');
-    expect(
-      screen.getByRole('link', { name: 'Resume (PDF)' }).getAttribute('href')
-    ).toBe('/docs/Ordiales-Fernando-Resume.pdf');
+    const resume = screen.getByRole('link', { name: 'Resume (PDF)' });
+    expect(resume.getAttribute('href')).toBe(
+      '/docs/Ordiales-Fernando-Resume.pdf'
+    );
+    expect(resume.getAttribute('target')).toBe('_blank');
     expect(
       screen.getByRole('link', { name: 'GitHub' }).getAttribute('href')
     ).toBe('https://github.com/Liam-Moriarty');
