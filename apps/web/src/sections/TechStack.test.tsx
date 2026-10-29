@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import { stack } from '../content/stack';
 import { TechStack } from './TechStack';
 
@@ -25,12 +26,21 @@ describe('stack content', () => {
 });
 
 describe('TechStack', () => {
-  it('renders every group label and its technologies', () => {
-    render(<TechStack />);
+  it('shows the featured picks per group with a see-more link to the full page', () => {
+    render(
+      <MemoryRouter>
+        <TechStack />
+      </MemoryRouter>
+    );
     for (const group of stack) {
       expect(screen.getByText(group.label)).not.toBeNull();
     }
     expect(screen.getByText('Vertex AI')).not.toBeNull();
-    expect(screen.getByText('GitHub Actions')).not.toBeNull();
+    // Non-featured items stay on the /stack page only.
+    expect(screen.queryByText('Fastify')).toBeNull();
+    expect(screen.queryByText('Pinia')).toBeNull();
+    expect(
+      screen.getByRole('link', { name: /See more/ }).getAttribute('href')
+    ).toBe('/stack');
   });
 });

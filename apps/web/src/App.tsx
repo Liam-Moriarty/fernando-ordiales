@@ -12,6 +12,7 @@ import { Nav } from './components/Nav';
 import { About } from './pages/About';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
+import { Stack } from './pages/Stack';
 import { Work } from './pages/Work';
 
 const ScrollManager = () => {
@@ -66,6 +67,7 @@ export const AppRoutes = () => {
             <Route path="/" element={<Home />} />
             <Route path="/work/:slug" element={<Work />} />
             <Route path="/about" element={<About />} />
+            <Route path="/stack" element={<Stack />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>

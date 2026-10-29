@@ -4,6 +4,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://REPLACE-WITH-DOMAIN/</loc></url>
   <url><loc>https://REPLACE-WITH-DOMAIN/about</loc></url>
+  <url><loc>https://REPLACE-WITH-DOMAIN/stack</loc></url>
   <url><loc>https://REPLACE-WITH-DOMAIN/work/switchboard</loc></url>
   <url><loc>https://REPLACE-WITH-DOMAIN/work/flinki</loc></url>
   <url><loc>https://REPLACE-WITH-DOMAIN/work/fgp-migration</loc></url>

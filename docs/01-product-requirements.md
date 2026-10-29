@@ -87,10 +87,11 @@ One anonymous role; there is no sign-in and no stored user data.
 - **Used by:** Visitor
 - **Priority:** Should
 - **Done when:**
-  - [x] The full skills inventory from the resume renders grouped like its
-        columns (frontend, backend, databases, devops & cloud, other tools),
-        each technology as a chip with its brand icon where one exists —
-        grayscale until hovered, per the old portfolio.
+  - [x] The homepage shows each group's featured picks with a "See more"
+        link; `/stack` lists the full inventory (frontend, backend,
+        databases, devops & cloud, other tools), each technology as a chip
+        with its brand icon where one exists — grayscale until hovered, per
+        the old portfolio. On phones, group labels sit above the chip rows.
 
 ### F6 · Contact section
 

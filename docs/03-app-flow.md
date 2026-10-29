@@ -12,6 +12,7 @@ What happens when someone clicks. Wireframes live in `design.md` §6.
 | Home       | `/`           | Everyone       | Hero, selected work, capabilities, experience, contact |
 | Case study | `/work/:slug` | Everyone       | One project: problem, build, decisions, results        |
 | About      | `/about`      | Everyone       | Short bio, education, resume download                  |
+| Tech stack | `/stack`      | Everyone       | The full grouped skills inventory                      |
 | Not found  | anything else | Everyone       | Plain message + link home                              |
 
 ## Flows
