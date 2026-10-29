@@ -374,8 +374,7 @@ All states = default / hover / active / focus-visible / disabled.
   hero's right column is a tall profile card — availability pill (accent
   dot), a large 4:5 photo of Fernando mid-walk under string lights given a
   lavender duotone wash (`mix-blend-mode: color` with the accent — his
-  requested color treatment), a Spotify strip (play button animating EQ
-  bars, track "Idea to Production", progress 2021 → now), centered email and
+  requested color treatment), centered email and
   "Based in Manila, PH", round social icon buttons, and a full-width "Email
   me" CTA opening the compose modal. Elevated bg, hairline border, 12px
   radius; settles in as the last beat of the load sequence. The particle

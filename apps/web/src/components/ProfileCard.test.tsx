@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { profile } from '../content/profile';
 import { ProfileCard } from './ProfileCard';
 
@@ -18,17 +17,8 @@ describe('ProfileCard', () => {
       screen.getByRole('link', { name: 'GitHub' }).getAttribute('href')
     ).toBe(profile.links.github);
     expect(screen.getByRole('button', { name: 'Email me' })).not.toBeNull();
-  });
-
-  it('keeps the spotify strip: track, career progress, play toggling to pause', async () => {
-    const user = userEvent.setup();
-    render(<ProfileCard />);
-
-    expect(screen.getByText('Idea to Production')).not.toBeNull();
-    expect(screen.getByText('2021')).not.toBeNull();
-    expect(screen.getByText('now')).not.toBeNull();
-
-    await user.click(screen.getByRole('button', { name: 'Play' }));
-    expect(screen.getByRole('button', { name: 'Pause' })).not.toBeNull();
+    // The spotify strip was removed (card follows the reference exactly).
+    expect(screen.queryByText('Idea to Production')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Play' })).toBeNull();
   });
 });
