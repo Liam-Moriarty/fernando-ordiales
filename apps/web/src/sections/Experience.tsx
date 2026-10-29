@@ -1,4 +1,4 @@
-import { experience } from '../content/experience';
+import { experience, training } from '../content/experience';
 
 export const Experience = () => (
   <section
@@ -27,5 +27,25 @@ export const Experience = () => (
         </li>
       ))}
     </ol>
+    <div className="mt-12">
+      <h3 className="text-h4 text-muted">Training &amp; internships</h3>
+      <ul className="mt-4 space-y-3">
+        {training.map((entry) => (
+          <li
+            key={entry.role}
+            className="grid gap-1 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-4"
+          >
+            <span
+              aria-hidden
+              className="hidden font-mono text-caption text-muted sm:block"
+            />
+            <span className="text-sm">
+              {entry.role}
+              <span className="text-muted"> — {entry.org}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 );

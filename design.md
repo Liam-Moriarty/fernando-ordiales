@@ -371,6 +371,11 @@ All states = default / hover / active / focus-visible / disabled.
 - **Icons:** Phosphor, regular weight (1.5px optical stroke), 20px default.
   Only functional icons: theme toggle, copy, check, external-link, arrow-left
   (back to work). No decorative icons next to headings or capabilities.
+  Exception (2026-10-29, Fernando's request): the Tech stack section's chips
+  carry brand logos (react-icons Simple Icons, 14px) — rendered grayscale at
+  70% opacity so the wall stays calm, releasing the brand color only on
+  hover, matching the old portfolio. Brand hexes live in the content data,
+  not the token system; white-logo brands take no color and inherit text.
 - **Imagery:** product screenshots only — no stock, no 3D illustrations, no
   abstract blobs. Screenshots sit in a `--surface` panel with hairline border,
   8px radius, actual app chrome cropped unless it matters. Architecture

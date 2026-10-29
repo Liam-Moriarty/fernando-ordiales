@@ -6,6 +6,7 @@ import { Contact } from '../sections/Contact';
 import { Experience } from '../sections/Experience';
 import { Hero } from '../sections/Hero';
 import { SelectedWork } from '../sections/SelectedWork';
+import { TechStack } from '../sections/TechStack';
 
 export const Home = () => {
   usePageMeta(
@@ -21,6 +22,7 @@ export const Home = () => {
           <Hero />
           <SelectedWork />
           <Capabilities />
+          <TechStack />
           <Experience />
           <Contact />
         </div>

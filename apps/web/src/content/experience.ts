@@ -1,3 +1,11 @@
+// Training and internships from the resume. The resume gives them no dates,
+// so none are shown — nothing is invented.
+export const training: { role: string; org: string }[] = [
+  { role: 'AI Enablement Bootcamp', org: 'Hytel' },
+  { role: 'Software Engineering Bootcamp', org: 'Hytel' },
+  { role: 'Frontend Web Developer Intern', org: 'Digiplus Interactive Corp.' },
+];
+
 export const experience: {
   start: number;
   years: string;

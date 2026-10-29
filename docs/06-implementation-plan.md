@@ -42,6 +42,11 @@ console errors). Bundle sizes are logged in
 - Case studies show the stack as chips plus "Visit live site" / "Source
   code" buttons when links exist (per the old site's pattern).
 - The hero particle field is mouse-draggable; the auto-drift never stops.
+- A Tech stack section (resume's full skills inventory, grouped, with brand
+  icons via react-icons that stay grayscale until hovered) and a Training &
+  internships list under Experience (Digiplus internship, both Hytel
+  bootcamps; the resume gives them no dates, so none are shown). Initial JS
+  rose to 163.9 KB gz — still under the 180 KB budget.
 - Resume downloads point at `/docs/Ordiales-Fernando-Resume.pdf` (the real
   PDF); the placeholder was removed. GitHub URL is set in `profile.ts`.
 

@@ -79,6 +79,18 @@ One anonymous role; there is no sign-in and no stored user data.
 - **Done when:**
   - [x] Experience lists roles newest first; `/about` has a short bio,
         education and the resume download.
+  - [x] A "Training & internships" list carries the resume's bootcamps and
+        internship (no dates shown — the resume gives none).
+
+### F8 · Tech stack section
+
+- **Used by:** Visitor
+- **Priority:** Should
+- **Done when:**
+  - [x] The full skills inventory from the resume renders grouped like its
+        columns (frontend, backend, databases, devops & cloud, other tools),
+        each technology as a chip with its brand icon where one exists —
+        grayscale until hovered, per the old portfolio.
 
 ### F6 · Contact section
 
