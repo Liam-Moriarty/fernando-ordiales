@@ -17,6 +17,7 @@
     "@phosphor-icons/react": "^2.1.10",
     "@react-three/fiber": "^9.8.2",
     "framer-motion": "^14.7.1",
+    "gsap": "^3.15.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "^8.5.1",

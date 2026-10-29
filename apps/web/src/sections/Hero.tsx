@@ -43,7 +43,11 @@ export const Hero = () => {
   return (
     <section className="grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,38%)] lg:py-32">
       <div>
-        <motion.h1 {...at(0, 0.5)} className="max-w-[18ch] text-display">
+        <motion.h1
+          {...at(0, 0.5)}
+          data-trace-start
+          className="max-w-[18ch] text-display"
+        >
           {profile.headline}
         </motion.h1>
         <motion.p {...at(0.12, 0.45)} className="mt-6 max-w-[52ch] text-muted">

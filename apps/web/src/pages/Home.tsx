@@ -1,4 +1,5 @@
 import { PageTransition } from '../components/PageTransition';
+import { Trace } from '../components/Trace';
 import { usePageMeta } from '../lib/meta';
 import { Capabilities } from '../sections/Capabilities';
 import { Contact } from '../sections/Contact';
@@ -15,7 +16,7 @@ export const Home = () => {
   return (
     <PageTransition>
       <div className="relative mx-auto max-w-page px-5 sm:px-8 lg:px-12">
-        {/* Task 6 mounts the scroll-drawn trace in this rail. */}
+        <Trace />
         <div className="lg:pl-16">
           <Hero />
           <SelectedWork />
