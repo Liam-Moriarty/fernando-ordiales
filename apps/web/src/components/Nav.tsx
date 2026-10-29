@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
+import { profile } from '../content/profile';
 import { ButtonLink } from './Button';
 import { ThemeToggle } from './ThemeToggle';
-
-// Replaced by content/profile in Task 3 of the plan.
-const EMAIL = 'fernando.ordiales23@gmail.com';
 
 const navLink =
   'text-sm text-muted transition-colors duration-150 hover:text-text';
@@ -41,7 +39,11 @@ export const Nav = () => {
           </NavLink>
         </div>
         <ThemeToggle />
-        <ButtonLink variant="primary" size="sm" href={`mailto:${EMAIL}`}>
+        <ButtonLink
+          variant="primary"
+          size="sm"
+          href={`mailto:${profile.email}`}
+        >
           Email me
         </ButtonLink>
       </nav>
