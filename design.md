@@ -315,9 +315,14 @@ The only scroll-driven motion on the site.
 - Press: scale 0.98, 100ms.
 - Focus-visible: 2px `--accent` ring, 2px offset, instant (no animation).
 - Copy email: icon swaps to check + label "Copied" for 1.6s, crossfade 220ms.
-- Theme toggle: all color tokens transition 250ms `ease-glide`
-  (`transition: background-color, color, border-color, fill, stroke`). No
-  flash, no circular reveal. Three.js re-tints over the same 250ms.
+- Theme toggle: one atomic crossfade of the whole page via the View
+  Transitions API, 250ms `ease-glide` — every element, the canvas and
+  scrollbars included, changes in lockstep. Browsers without the API fall
+  back to a gated CSS color transition (same duration, `!important` so
+  per-element hover transitions can't desync it). The Three.js palette
+  lerps over ~250ms in `useFrame` rather than snapping. No flash, no
+  circular reveal. (Reworked 2026-10-29 after per-element transitions
+  visibly desynced on a real machine.)
 
 ### Reduced motion (`prefers-reduced-motion: reduce`)
 

@@ -53,6 +53,10 @@ console errors). Bundle sizes are logged in
   a prefilled mailto as the in-dialog fallback when the relay is
   unreachable. Chosen over mailto alone after it dead-ended on machines
   with no configured mail app.
+- The theme toggle crossfades through the View Transitions API (CSS
+  transition fallback hardened with !important; Three.js palette lerped in
+  useFrame) after Fernando's recording showed the nav, body and canvas
+  changing out of step.
 - Case studies carry the old portfolio's links rail: Live URL / Repository
   rows with honest muted placeholders when nothing is public. Repo links
   added from Fernando's GitHub: fgp-official-website (FGP),

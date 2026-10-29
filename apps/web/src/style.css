@@ -121,9 +121,20 @@
     font-size: 0.875em;
   }
 
-  /* The theme toggle sets data-theme-transition on <html> for the swap and
-     removes it right after, so hovers stay fast (design.md §9: 250ms glide,
-     colors only, no flash). */
+  /* Theme swap, primary path: one View Transition crossfade of the whole
+     page, so every color changes in lockstep (design.md §9). */
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 250ms;
+      animation-timing-function: var(--ease-glide);
+    }
+  }
+
+  /* Fallback for browsers without View Transitions: the toggle sets
+     data-theme-transition on <html> for the swap and removes it right
+     after, so hovers stay fast. !important keeps per-element transition
+     utilities (150ms hovers) from desyncing the crossfade. */
   [data-theme-transition],
   [data-theme-transition] *,
   [data-theme-transition] *::before,
@@ -133,7 +144,7 @@
       color 250ms var(--ease-glide),
       border-color 250ms var(--ease-glide),
       fill 250ms var(--ease-glide),
-      stroke 250ms var(--ease-glide);
+      stroke 250ms var(--ease-glide) !important;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -141,7 +152,7 @@
     [data-theme-transition] *,
     [data-theme-transition] *::before,
     [data-theme-transition] *::after {
-      transition: none;
+      transition: none !important;
     }
   }
 }

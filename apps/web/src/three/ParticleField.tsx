@@ -33,19 +33,39 @@ const Cloud = ({
   const ref = useRef<Points>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const drift = useRef(0);
+  const colorAttribute = useRef<BufferAttribute>(null);
+  // Colors chase the palette over ~250ms in useFrame instead of snapping on
+  // theme change, matching the page's crossfade (design.md §9).
+  const currentColors = useRef({
+    gray: new Color(palette.gray),
+    accent: new Color(palette.accent),
+  });
+  const targetColors = useRef({
+    gray: new Color(palette.gray),
+    accent: new Color(palette.accent),
+  });
 
+  useEffect(() => {
+    targetColors.current.gray.set(palette.gray);
+    targetColors.current.accent.set(palette.accent);
+  }, [palette]);
+
+  const points = useMemo(() => generateFieldPoints(count, 7), [count]);
+
+  // The first palette seeds the buffers; later palettes arrive via the
+  // useFrame lerp, never by rebuilding the geometry.
+  const [initialPalette] = useState(palette);
   const { positions, colors } = useMemo(() => {
-    const points = generateFieldPoints(count, 7);
-    const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
-    const gray = new Color(palette.gray);
-    const accent = new Color(palette.accent);
+    const positions = new Float32Array(points.length * 3);
+    const colors = new Float32Array(points.length * 3);
+    const gray = new Color(initialPalette.gray);
+    const accent = new Color(initialPalette.accent);
     points.forEach((point, i) => {
       positions.set([point.x, point.y, point.z], i * 3);
       (point.accent ? accent : gray).toArray(colors, i * 3);
     });
     return { positions, colors };
-  }, [count, palette]);
+  }, [points, initialPalette]);
 
   useEffect(() => {
     const onMove = (event: PointerEvent) => {
@@ -71,6 +91,36 @@ const Cloud = ({
       (pointer.current.y * MAX_TILT + drag.x - cloud.rotation.x) * 0.08;
     cloud.rotation.z +=
       (pointer.current.x * MAX_TILT - cloud.rotation.z) * 0.05;
+
+    const current = currentColors.current;
+    const target = targetColors.current;
+    const distance =
+      Math.abs(current.gray.r - target.gray.r) +
+      Math.abs(current.gray.g - target.gray.g) +
+      Math.abs(current.gray.b - target.gray.b) +
+      Math.abs(current.accent.r - target.accent.r) +
+      Math.abs(current.accent.g - target.accent.g) +
+      Math.abs(current.accent.b - target.accent.b);
+    if (distance > 0) {
+      if (distance < 0.01) {
+        current.gray.copy(target.gray);
+        current.accent.copy(target.accent);
+      } else {
+        const step = Math.min(delta / 0.25, 1);
+        current.gray.lerp(target.gray, step);
+        current.accent.lerp(target.accent, step);
+      }
+      const attribute = colorAttribute.current;
+      if (attribute) {
+        points.forEach((point, i) => {
+          (point.accent ? current.accent : current.gray).toArray(
+            attribute.array,
+            i * 3
+          );
+        });
+        attribute.needsUpdate = true;
+      }
+    }
   });
 
   return (
@@ -81,6 +131,7 @@ const Cloud = ({
           object={new BufferAttribute(positions, 3)}
         />
         <primitive
+          ref={colorAttribute}
           attach="attributes-color"
           object={new BufferAttribute(colors, 3)}
         />
